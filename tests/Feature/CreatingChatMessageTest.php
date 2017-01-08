@@ -6,9 +6,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\ChatThread;
 use App\ChatMessage;
 
+/**
+ * @group Chat
+ */
 class CreatingChatMessageTest extends TestCase
 {
-    use Authentication, DatabaseMigrations;
+    use Authentication, DatabaseSetup;
 
     public function testAUserCanCreateAMessageInAPublicThread()
     {

@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+	protected $casts = [
+		'videoable_id' => 'integer'
+	];
+
 	public function videoable()
 	{
 		return $this->morphTo();

@@ -37,7 +37,8 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php",
-            "tests/Authentication.php"
+            "tests/Authentication.php",
+            "tests/DatabaseSetup.php"
         ]
     },
     "scripts": {

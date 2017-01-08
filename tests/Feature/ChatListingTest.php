@@ -5,9 +5,12 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\ChatThread;
 
+/**
+ * @group Chat
+ */
 class ChatListingTest extends TestCase
 {
-    use Authentication, DatabaseMigrations;
+    use Authentication, DatabaseSetup;
 
     public function testAUserCanListAllPublicThreads()
     {

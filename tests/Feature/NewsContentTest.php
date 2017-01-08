@@ -11,7 +11,7 @@ use App\{NewsArticle, NewsPost, Photo, Video};
  */
 class NewsContentTest extends TestCase
 {
-	use DatabaseMigrations, Authentication;
+	use DatabaseSetup, Authentication;
 
     public function testUserCanSeeArticleWithPosts()
     {
@@ -36,7 +36,7 @@ class NewsContentTest extends TestCase
 		$post->videos()->save(factory(Video::class)->make());
 
 		$this->getJson("/api/news/{$article->id}/posts/{$post->id}")
-			 ->seeJsonContains([
+			 ->seeJson([
 			 	'photoable_type' => 'App\NewsPost',
 			 	'photoable_id'	 =>	$post->id,
 				'videoable_type' => 'App\NewsPost',

@@ -30,6 +30,10 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUpTraits();
         $uses = array_flip(class_uses_recursive(static::class));
+
+        if (isset($uses[DatabaseSetup::class])) {
+            $this->setupDatabase();
+        }
         
         if (isset($uses[Authentication::class])) {
             $this->setUpAuthentication();

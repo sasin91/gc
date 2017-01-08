@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     });
 });
 
+Route::resource('servers', 'ServersController');
+
 Route::get('news/search/{article}', 'NewsController@search');
 Route::resource('news', 'NewsController');
 

@@ -129,3 +129,10 @@ $factory->state(\App\ChatThread::class, 'private', function ($faker) {
    ];
 });
 
+$factory->define(App\Server::class, function ($faker) {
+    return [
+        'name'          =>  $faker->name,
+        'ip'            =>  $faker->ipv4,
+        'player_limit'  =>  $faker->numberBetween(5,100)
+    ];
+});
