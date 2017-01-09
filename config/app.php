@@ -171,6 +171,7 @@ return [
         Conner\Tagging\Providers\TaggingServiceProvider::class,
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
+        Sasin91\LaravelRepository\RepositoryServiceProvider::class,
         //
 
         /*
@@ -184,7 +185,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\RepositoryServiceProvider::class,
     ],
 
     /*

@@ -4977,5 +4977,57 @@
             "laravel",
             "tests"
         ]
+    },
+    {
+        "name": "sasin91/laravel-repository",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sasin91/laravel-repository.git",
+            "reference": "d3b624cca4998c79aa9a5326ac25e5b6a3f3f413"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sasin91/laravel-repository/zipball/d3b624cca4998c79aa9a5326ac25e5b6a3f3f413",
+            "reference": "d3b624cca4998c79aa9a5326ac25e5b6a3f3f413",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/console": "~5.0",
+            "illuminate/database": "~5.0",
+            "illuminate/filesystem": "~5.0",
+            "illuminate/support": "~5.0"
+        },
+        "suggest": {
+            "league/fractal": "League's well-known Fractal Transformer."
+        },
+        "time": "2017-01-04T12:21:03+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Sasin91\\LaravelRepository\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jonas Kervin Hansen",
+                "email": "jonas.kerwin.hansen@gmail.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Laravel 5 - very simply repositories without all the fluff...",
+        "keywords": [
+            "database",
+            "eloquent",
+            "laravel",
+            "model",
+            "repository"
+        ]
     }
 ]

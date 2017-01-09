@@ -55,6 +55,7 @@ class ComposerStaticInitbd7b49c12935c15c29485295d962e35d
             'Symfony\\Component\\ClassLoader\\' => 30,
             'SuperClosure\\' => 13,
             'Stripe\\' => 7,
+            'Sasin91\\LaravelRepository\\' => 26,
         ),
         'R' => 
         array (
@@ -211,6 +212,10 @@ class ComposerStaticInitbd7b49c12935c15c29485295d962e35d
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Sasin91\\LaravelRepository\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sasin91/laravel-repository/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -429,6 +434,7 @@ class ComposerStaticInitbd7b49c12935c15c29485295d962e35d
         'App\\Http\\Controllers\\Chat\\Room\\ParticipantsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Chat/Room/ParticipantsController.php',
         'App\\Http\\Controllers\\Chat\\RoomsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Chat/RoomsController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FriendsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FriendsController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Controllers\\News\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/News/PostsController.php',
@@ -439,9 +445,11 @@ class ComposerStaticInitbd7b49c12935c15c29485295d962e35d
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\StoreFriendRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreFriendRequest.php',
         'App\\Http\\Requests\\StoreNewsArticleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreNewsArticleRequest.php',
         'App\\Http\\Requests\\StoreNewsPostRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreNewsPostRequest.php',
         'App\\Http\\Requests\\StoreServerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreServerRequest.php',
+        'App\\Http\\Requests\\UpdateFriendRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateFriendRequest.php',
         'App\\Http\\Requests\\UpdateNewsArticleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateNewsArticleRequest.php',
         'App\\Http\\Requests\\UpdateNewsPostRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateNewsPostRequest.php',
         'App\\Http\\Requests\\UpdateServerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateServerRequest.php',
@@ -3597,6 +3605,8 @@ class ComposerStaticInitbd7b49c12935c15c29485295d962e35d
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/renderer.cls.php',
+        'Sasin91\\LaravelRepository\\Console\\Commands\\RepositoryMakeCommand' => __DIR__ . '/..' . '/sasin91/laravel-repository/src/Console/Commands/RepositoryMakeCommand.php',
+        'Sasin91\\LaravelRepository\\RepositoryServiceProvider' => __DIR__ . '/..' . '/sasin91/laravel-repository/src/RepositoryServiceProvider.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

@@ -17,6 +17,18 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->get('users/search/{nameOrEmail}', 'UsersController@search');
     $route->get('users/online', 'UsersController@onlineList');
 
+    $route->resource('friends', 'FriendsController');
+    $route->group(['prefix' => 'friends'], function (Router $route) {
+    	$route->group(['prefix' => '/{user}'], function (Router $route) {
+    		$route->get('mutual', 'FriendsController@mutual');
+    		$route->get('isFriendsWith', 'FriendsController@isFriendsWith');
+    	});
+
+    	$route->get('denied', 'FriendsController@denied');
+    	$route->get('blocked', 'FriendsController@blocked');
+    	$route->get('pending', 'FriendsController@pending');
+    });
+
     $route->group(['prefix' => 'chat', 'namespace' => 'Chat'], function (Router $route) {
         $route->resource('rooms', 'RoomsController');
         $route->resource('rooms.messages', 'Room\MessagesController');

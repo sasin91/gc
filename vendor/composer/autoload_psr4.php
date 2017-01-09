@@ -28,6 +28,7 @@ return array(
     'Symfony\\Component\\ClassLoader\\' => array($vendorDir . '/symfony/class-loader'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
+    'Sasin91\\LaravelRepository\\' => array($vendorDir . '/sasin91/laravel-repository/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

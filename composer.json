@@ -1,4 +1,6 @@
 {
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -17,7 +19,8 @@
         "laravel/spark": "*@dev",
         "mpociot/laravel-test-factory-helper": "^0.3.1",
         "phpunit/phpunit": "^5.7",
-        "rtconner/laravel-tagging": "^2.2"
+        "rtconner/laravel-tagging": "^2.2",
+        "sasin91/laravel-repository": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
