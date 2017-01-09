@@ -17,17 +17,17 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->get('users/search/{nameOrEmail}', 'UsersController@search');
     $route->get('users/online', 'UsersController@onlineList');
 
-    $route->resource('friends', 'FriendsController');
     $route->group(['prefix' => 'friends'], function (Router $route) {
-    	$route->group(['prefix' => '/{user}'], function (Router $route) {
-    		$route->get('mutual', 'FriendsController@mutual');
-    		$route->get('isFriendsWith', 'FriendsController@isFriendsWith');
-    	});
+        $route->get('mutual/{user}', 'FriendsController@mutual');
+        $route->get('contains/{user}', 'FriendsController@contains');
+        $route->get('hasBlockedMe/{user}', 'FriendsController@hasBlockedMe');
 
-    	$route->get('denied', 'FriendsController@denied');
-    	$route->get('blocked', 'FriendsController@blocked');
-    	$route->get('pending', 'FriendsController@pending');
+        $route->get('denied', 'FriendsController@denied');
+        $route->get('blocked', 'FriendsController@blocked');
+        $route->get('pending', 'FriendsController@pending');
     });
+    
+    $route->resource('friends', 'FriendsController');
 
     $route->group(['prefix' => 'chat', 'namespace' => 'Chat'], function (Router $route) {
         $route->resource('rooms', 'RoomsController');

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreFriendRequest;
 use App\Http\Requests\UpdateFriendRequest;
 use App\Repositories\FriendsRepositoryContract as FriendsRepository;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class FriendsController extends Controller
@@ -25,29 +26,63 @@ class FriendsController extends Controller
         $this->friends = $friends;
     }
 
-    public function isFriendsWith(User $user)
+    /**
+     * Whether the current User is friends with given.
+     * 
+     * @param  integer $user_id
+     * @return boolean
+     */
+    public function contains($user_id)
     {
-        return request()->user()->isFriendWith($user);
+        return $this->friends->contains(User::findOrFail($user_id));
     }
 
-    public function mutual(User $user)
+    /**
+     * Get mutual friends.
+     * 
+     * @param  integer $user_id
+     * @return Collection
+     */
+    public function mutual($user_id)
     {
-        return $this->friends->mutual($user);
+        return $this->friends->mutual(User::findOrFail($user_id));
     }
 
+    /**
+     * Get denied friendship requests.
+     * @return Collection
+     */
     public function denied()
     {
-        return request()->user()->getDeniedFriendships();
+        return $this->friends->denied();
     }
 
+    /**
+     * Get blocked friends.
+     * @return Collection
+     */
     public function blocked()
     {
-        return request()->user()->getBlockedFriendships();
+        return $this->friends->blocked();
     }
 
+    /**
+     * Whether the given has blocked the current User.
+     * @param  integer  $user_id
+     * @return boolean
+     */
+    public function hasBlockedMe($user_id)
+    {
+        return User::findOrFail($user_id)->hasBlocked(request()->user());
+    }
+
+    /**
+     * Get pending friends.
+     * @return Collection
+     */
     public function pending()
     {
-        return request()->user()->getPendingFriendships();
+        return $this->friends->pending();
     }
 
     /**
@@ -57,7 +92,7 @@ class FriendsController extends Controller
      */
     public function index()
     {
-        return request()->user()->getFriends();
+        return $this->friends->accepted();
     }
 
     /**
@@ -74,40 +109,62 @@ class FriendsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  integer $user_id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($user_id)
     {
-        return $this->friends->showFriendship($user);
+        return $this->friends->showFriendship(User::findOrFail($user_id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  integer                   $user_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFriendRequest $request, User $user)
+    public function update(UpdateFriendRequest $request, $user_id)
     {
-        if ($request->has(['accept', 'deny'])) {
-            return $this->friends->updateNewFriend($request, $user);
+        $friend = User::findOrFail($user_id);
+
+        if ($request->has('deny')) {
+            $this->friends->updateNewFriend(
+                $friend, 
+                (bool)$request->deny
+            );
         }
 
-        if ($request->has(['block', 'unblock'])) {
-            return $this->friends->updateExistingFriend($request, $user);
+        if ($request->has('accept')) {
+            $this->friends->updateNewFriend(
+                $friend, 
+                ! (bool)$request->accept
+            );
+        }        
+
+        if ($request->has('block')) {
+            $this->friends->updateExistingFriend(
+                $friend,
+                (bool)$request->block
+            );
+        }
+
+        if ($request->has('unblock')) {
+            $this->friends->updateExistingFriend(
+                $friend,
+                ! (bool)$request->unblock
+            );
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  integer $user_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($user_id)
     {
-        return $this->friends->unfriend($user);
+        return $this->friends->unfriend(User::findOrFail($user_id));
     }
 }

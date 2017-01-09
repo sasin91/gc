@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateFriendRequest;
 use App\Repositories\FriendsRepositoryContract;
 use App\User;
 use Hootlex\Friendships\Models\Friendship;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class FriendsRepository
@@ -14,6 +15,87 @@ use Hootlex\Friendships\Models\Friendship;
 class FriendsRepository implements FriendsRepositoryContract
 {
 	/**
+	 * The current User.
+	 * @var App\User
+	 */
+	protected $user;
+
+	/**
+	 * The current User.
+	 * 
+	 * @return User
+	 */
+	protected function user()
+	{
+		return $this->user ?? $this->user = request()->user();
+	}
+
+	/**
+     * Whether the current User is friends
+     * with given friend.
+     * 
+     * @param  User   $friend
+     * @return boolean
+     */
+    public function contains(User $friend)
+    {
+    	$this->user()->isFriendWith($friend);
+    }
+
+	/**
+     * Sets the current User on the Repository.
+     * defaults to currently authenticated User.
+     *
+     * @param  User   $user
+     * @return FriendsRepositoryContract
+     */
+    public function forUser(User $user)
+    {
+    	$this->user = $user;
+
+    	return $this;
+    }
+
+	/**
+	 * Get pending Friendships
+	 * 
+	 * @return Collection
+	 */
+	public function pending()
+	{
+		return $this->user()->getPendingFriendships();
+	}
+
+	/**
+	 * Get blocked Friendship Requests.
+	 * @return Collection
+	 */
+	public function blocked()
+	{
+		return $this->user()->getBlockedFriendships();
+	}
+
+	/**
+	 * Get denied Friendship Requests.
+	 * 
+	 * @return Collection
+	 */
+	public function denied()
+	{
+		return $this->user()->getDeniedFriendships();
+	}
+
+	/**
+	 * Get accepted Friendships
+	 * 
+	 * @return Collection
+	 */
+	public function accepted()
+	{
+		return $this->user()->getFriends();
+	}
+
+	/**
 	 * Befriend given User.
 	 * 
 	 * @param  User   $friend
@@ -21,9 +103,7 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function befriend(User $friend)
 	{
-		if (request()->user()->canBefriend($friend)) {
-			return request()->user()->befriend($friend);
-		}
+		return $this->user()->befriend($friend);
 	}
 
 	/**
@@ -34,9 +114,67 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function unfriend(User $friend)
 	{
-		if (request()->user()->isFriendWith($friend)) {
-			return request()->user()->unfriend($friend);
+		if ($this->user()->isFriendWith($friend)) {
+			return $this->user()->unfriend($friend);
 		}
+
+		return false;
+	}
+
+	/**
+	 * Block given friend.
+	 * 
+	 * @param  User   $friend
+	 * @return Friendship
+	 */
+	public function block(User $friend)
+	{
+		$this->user()->blockFriend($friend);
+	}
+
+	/**
+	 * Unblock given friend.
+	 * 
+	 * @param  User   $friend
+	 * @return boolean
+	 */
+	public function unblock(User $friend)
+	{
+		if ($this->user()->hasBlocked($friend)) {
+			return (bool)$this->user()->unblockFriend($friend);
+		}
+
+		return False;
+	}
+
+	/**
+	 * Accept a given friends Friendship Request.
+	 * 
+	 * @param  User   $friend
+	 * @return boolean         
+	 */
+	public function accept(User $friend)
+	{
+		if ($this->user()->hasFriendRequestFrom($friend)) {
+			return (bool)$this->user()->acceptFriendRequest($friend);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Deny a given friends Friendship Request.
+	 * 
+	 * @param  User   $friend
+	 * @return boolean         
+	 */
+	public function deny(User $friend)
+	{
+		if ($this->user()->hasFriendRequestFrom($friend)) {
+			return (bool)$this->user()->denyFriendRequest($friend);
+		}
+
+		return false;
 	}
 
 	/**
@@ -47,61 +185,50 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function mutual(User $friend)
 	{
-		if (request()->user()->isFriendWith($user)) {
-			return request()->user()->getMutualFriends($user);
-		}
+		return $this->user()->getMutualFriends($user);
 	}
 
 	/**
 	 * Display the Friendship between the current and given User.
 	 * 
 	 * @param  User   $friend
-	 * @return Friendship
+	 * @param  User   $user 
+	 * @return Friendship|null
 	 */
-	public function showFriendship(User $friend)
+	public function showFriendship(User $friend, User $user = null)
 	{
-		if (request()->user()->isFriendWith($friend)) {
-            return request()->user()->getFriendship($friend);
+		if ($this->user()->isFriendWith($friend)) {
+            return $this->user()->getFriendship($friend);
         }
+
+        return null;
 	}
 
 	/**
 	 * Handle a new Friend.
 	 * 
-	 * @param  UpdateFriendRequest $request
-	 * @param  User                $friend   
+	 * @param  User $friend
+	 * @param  bool $negate
 	 * @return boolean              
 	 */
-    public function updateNewFriend(UpdateFriendRequest $request, User $friend)
+    public function updateNewFriend(User $friend, bool $negate = false)
     {
-        if ($request->accept) {
-        	return $request->user()->acceptFriendRequest($friend);
-        }
-
-        if ($request->deny) {
-        	return $request->user()->denyFriendRequest($friend);
-        }
-
-        return false;
+    	return $negate 
+    		? $this->deny($friend)
+    		: $this->accept($friend);
     }
 
     /**
      * Handle updating an existing Friend.
      * 
-     * @param  UpdateFriendRequest $request
-     * @param  User                $friend
+     * @param  User $user
+     * @param  bool $negate
      * @return boolean
      */
-    public function updateExistingFriend(UpdateFriendRequest $request, User $friend)
+    public function updateExistingFriend(User $friend, bool $negate = false)
     {
-        if ($request->block) {
-        	return $request->user()->blockFriend($friend);
-        }
-
-        if ($request->unblock) {
-        	return $request->user()->unblockFriend($friend);
-        }
-
-        return false;
+        return $negate
+        	? $this->block($friend)
+        	: $this->unblock($friend);
     }
 }

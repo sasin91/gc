@@ -24,7 +24,6 @@ class UpdateFriendRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'   =>  'required|integer',
             'block'     =>  'sometimes|boolean',
             'unblock'   =>  'sometimes|boolean',
             'accept'    =>  'sometimes|boolean',
