@@ -18,9 +18,9 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->get('users/online', 'UsersController@onlineList');
 
     $route->group(['prefix' => 'chat', 'namespace' => 'Chat'], function (Router $route) {
-        $route->resource('threads', 'ThreadsController');
-        $route->resource('threads.messages', 'Thread\MessagesController');
-        $route->resource('threads.participants', 'Thread\ParticipantsController');
+        $route->resource('rooms', 'RoomsController');
+        $route->resource('rooms.messages', 'Room\MessagesController');
+        $route->resource('rooms.participants', 'Room\ParticipantsController');
     });
 });
 

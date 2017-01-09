@@ -9,14 +9,14 @@ use Laravel\Spark\Spark;
 use Laravel\Spark\Team;
 
 /**
- * Class ChatThread
+ * Class ChatRoom
  * @package App
  *
  * @method static Builder onlyPublic()
  * @method static Builder forTeam($team)
  * @method static Builder forTeams($teams)
  */
-class ChatThread extends Model
+class ChatRoom extends Model
 {
     protected $fillable = [
         'isPublic',
@@ -29,7 +29,7 @@ class ChatThread extends Model
     ];
 
     /**
-     * Return only public threads.
+     * Return only public Rooms.
      *
      * @param Builder $query
      * @return mixed

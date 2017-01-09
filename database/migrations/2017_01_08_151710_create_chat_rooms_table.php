@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChatThreadsTable extends Migration
+class CreateChatRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateChatThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chat_threads', function (Blueprint $table) {
+        Schema::create('chat_rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('isPublic')->default(true);
             $table->string('topic');
@@ -29,6 +29,6 @@ class CreateChatThreadsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('chat_threads');
+        Schema::drop('chat_rooms');
     }
 }

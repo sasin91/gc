@@ -11,7 +11,7 @@ class ChatParticipantTransformer
     {
         return [
             'name'      =>  $participating->user->name,
-            'threads'   =>  $participating->threads
+            'Rooms'  	=>  $participating->Rooms
         ];
     }
 }

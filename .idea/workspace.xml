@@ -45,8 +45,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_01_08_151710_create_chat_threads_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_threads_table.php">
+      <file leaf-file-name="2017_01_08_151710_create_chat_rooms_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_rooms_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
               <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
@@ -105,8 +105,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatThread.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ChatThread.php">
+      <file leaf-file-name="ChatRoom.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/ChatRoom.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="471">
               <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
@@ -125,7 +125,7 @@
       <find>search</find>
       <find>searchabl</find>
       <find>seeJSonContains</find>
-      <find>ChatThread</find>
+      <find>ChatRoom</find>
       <find>$participant</find>
       <find>phpu</find>
       <find>ChatPart</find>
@@ -138,7 +138,7 @@
       <replace>seeJson</replace>
       <replace>ChatMessage</replace>
       <replace>chat_participant_id</replace>
-      <replace>chat_thread_id</replace>
+      <replace>chat_room_id</replace>
       <replace>$participating</replace>
     </replaceStrings>
     <dirStrings>
@@ -156,7 +156,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/News/PostsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
         <option value="$PROJECT_DIR$/tests/Authentication.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_threads_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_rooms_table.php" />
         <option value="$PROJECT_DIR$/app/Transformers/ChatParticipantTransformer.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Chat/Thread/ParticipantsController.php" />
         <option value="$PROJECT_DIR$/app/Transformers/ChatMessageTransformer.php" />
@@ -165,16 +165,16 @@
         <option value="$PROJECT_DIR$/database/migrations/2017_01_08_152149_create_chat_participants_table.php" />
         <option value="$PROJECT_DIR$/phpunit.xml" />
         <option value="$PROJECT_DIR$/config/scout.php" />
-        <option value="$PROJECT_DIR$/app/Transformers/ChatThreadTransformer.php" />
+        <option value="$PROJECT_DIR$/app/Transformers/ChatRoomTransformer.php" />
         <option value="$PROJECT_DIR$/tests/TestCase.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Chat/ThreadsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Chat/RoomsController.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ChatListingTest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_08_151711_create_chat_participants_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_01_08_151842_create_chat_messages_table.php" />
         <option value="$PROJECT_DIR$/app/ChatMessage.php" />
         <option value="$PROJECT_DIR$/database/factories/ModelFactory.php" />
         <option value="$PROJECT_DIR$/tests/Feature/CreatingChatMessageTest.php" />
-        <option value="$PROJECT_DIR$/app/ChatThread.php" />
+        <option value="$PROJECT_DIR$/app/ChatRoom.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/ChatParticipant.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Chat/Thread/MessagesController.php" />
@@ -366,7 +366,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="Collect&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/vendor/laravel/framework/src/Illuminate/Support/Collection.php&#10;ChatList&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/tests/Feature/ChatListingTest.php&#10;create_chat&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_threads_table.php&#10;create_chat_th&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_threads_table.php&#10;create_chat_mess&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;create_chat_par&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151711_create_chat_participants_table.php&#10;create_&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_threads_table.php&#10;ChatMessTra&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatMessageTransformer.php&#10;ChatThreTR&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatThreadTransformer.php&#10;ThreadCOn&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Http/Controllers/Chat/ThreadsController.php&#10;ChatTR&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatThreadTransformer.php&#10;MOdelFa&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;TestCas&#9;null&#9;null&#10;Creating&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/tests/Feature/CreatingChatMessageTest.php&#10;ModelFa&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;chat_mes&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;chatth&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatThread.php&#10;ChatThr&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatThread.php&#10;ChatMes&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatMessage.php&#10;create_part&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_152149_create_chat_participants_table.php&#10;ChatPart&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatParticipant.php&#10;ChatMess&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;ChatMesTr&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatMessageTransformer.php&#10;create_ch&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_threads_table.php&#10;ModelFac&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;app.php&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/config/app.php&#10;api.&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/routes/api.php&#10;create_chat_&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_threads_table.php&#10;create_teams&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/spark/install-stubs/database/migrations/create_teams_table.php&#10;Team&#9;null&#9;null&#10;app.&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/config/app.php&#10;api.php&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/routes/api.php&#10;Collection&#9;null&#9;null&#10;create_users&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/spark/install-stubs/database/migrations/create_users_table.php" />
+    <property name="SearchEverywhereHistoryKey" value="Collect&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/vendor/laravel/framework/src/Illuminate/Support/Collection.php&#10;ChatList&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/tests/Feature/ChatListingTest.php&#10;create_chat&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_rooms_table.php&#10;create_chat_th&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_rooms_table.php&#10;create_chat_mess&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;create_chat_par&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151711_create_chat_participants_table.php&#10;create_&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_rooms_table.php&#10;ChatMessTra&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatMessageTransformer.php&#10;ChatThreTR&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatRoomTransformer.php&#10;ThreadCOn&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Http/Controllers/Chat/RoomsController.php&#10;ChatTR&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatRoomTransformer.php&#10;MOdelFa&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;TestCas&#9;null&#9;null&#10;Creating&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/tests/Feature/CreatingChatMessageTest.php&#10;ModelFa&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;chat_mes&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;chatth&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatRoom.php&#10;ChatThr&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatRoom.php&#10;ChatMes&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatMessage.php&#10;create_part&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_152149_create_chat_participants_table.php&#10;ChatPart&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/ChatParticipant.php&#10;ChatMess&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151842_create_chat_messages_table.php&#10;ChatMesTr&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/app/Transformers/ChatMessageTransformer.php&#10;create_ch&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_rooms_table.php&#10;ModelFac&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/factories/ModelFactory.php&#10;app.php&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/config/app.php&#10;api.&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/routes/api.php&#10;create_chat_&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/database/migrations/2017_01_08_151710_create_chat_rooms_table.php&#10;create_teams&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/spark/install-stubs/database/migrations/create_teams_table.php&#10;Team&#9;null&#9;null&#10;app.&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/config/app.php&#10;api.php&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/routes/api.php&#10;Collection&#9;null&#9;null&#10;create_users&#9;FILE&#9;file://C:/Users/jonas/Documents/GitHub/GoldCatcher-site/spark/install-stubs/database/migrations/create_users_table.php" />
     <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
@@ -736,7 +736,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Chat/ThreadsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Chat/RoomsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="56" column="75" lean-forward="false" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="75" />
@@ -744,7 +744,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Transformers/ChatThreadTransformer.php">
+    <entry file="file://$PROJECT_DIR$/app/Transformers/ChatRoomTransformer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
@@ -802,7 +802,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_threads_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_01_08_151710_create_chat_rooms_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="27" column="3" lean-forward="false" selection-start-line="27" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
@@ -874,7 +874,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/ChatThread.php">
+    <entry file="file://$PROJECT_DIR$/app/ChatRoom.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />

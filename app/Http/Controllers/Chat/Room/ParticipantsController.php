@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Chat\Thread;
+namespace App\Http\Controllers\Chat\Room;
 
 use App\ChatParticipant;
 use app\Transformers\ChatParticipantTransformer;

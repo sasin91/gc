@@ -14,8 +14,8 @@ class CreateChatParticipantsTable extends Migration
     {
         Schema::create('chat_participants', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('chat_thread_id')->index();
-            $table->foreign('chat_thread_id')->references('id')->on('chat_threads');
+            $table->unsignedInteger('chat_room_id')->index();
+            $table->foreign('chat_room_id')->references('id')->on('chat_rooms');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

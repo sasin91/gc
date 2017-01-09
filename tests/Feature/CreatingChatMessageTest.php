@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\ChatThread;
+use App\ChatRoom;
 use App\ChatMessage;
 
 /**
@@ -13,16 +13,16 @@ class CreatingChatMessageTest extends TestCase
 {
     use Authentication, DatabaseSetup;
 
-    public function testAUserCanCreateAMessageInAPublicThread()
+    public function testAUserCanCreateAMessageInAPublicrooms()
     {
-        $thread = factory(ChatThread::class)->states(['public'])->create();
+        $rooms = factory(ChatRoom::class)->states(['public'])->create();
 
-        $this->postJson("/api/chat/threads/{$thread->id}/messages", factory(ChatMessage::class)->make(['title' => 'Cheers luv', 'body' => "The cavalry is 'ere!"])->jsonSerialize());
-        $this->getJson("/api/chat/threads/{$thread->id}/messages")
+        $this->postJson("/api/chat/rooms/{$rooms->id}/messages", factory(ChatMessage::class)->make(['title' => 'Cheers luv', 'body' => "The cavalry is 'ere!"])->jsonSerialize());
+        $this->getJson("/api/chat/rooms/{$rooms->id}/messages")
              ->seeJson(['title' => 'Cheers luv', 'body' => "The cavalry is 'ere!"]);
     }
 
-    public function testAUserCanPostAMessageInAPrivateThreadTheyAreParticipatingIn()
+    public function testAUserCanPostAMessageInAPrivateroomsTheyAreParticipatingIn()
     {
         $team = \Laravel\Spark\Spark::interact(\Laravel\Spark\Contracts\Interactions\Settings\Teams\CreateTeam::class, [
             $this->user(),
@@ -31,26 +31,26 @@ class CreatingChatMessageTest extends TestCase
             ]
         ]);
 
-        $thread = factory(ChatThread::class)->states(['private'])->create(['team_id' => $team->id]);
+        $rooms = factory(ChatRoom::class)->states(['private'])->create(['team_id' => $team->id]);
 
-        $this->postJson("/api/chat/threads/{$thread->id}/messages",
+        $this->postJson("/api/chat/rooms/{$rooms->id}/messages",
             factory(ChatMessage::class)->make(['title' => 'Marked by the dragon.', 'body' => "Ōkami yo, waga teki wo kurae!"])->jsonSerialize()
         );
-        $this->getJson("/api/chat/threads/{$thread->id}/messages")
+        $this->getJson("/api/chat/rooms/{$rooms->id}/messages")
              ->seeJson(['title' => 'Marked by the dragon.', 'body' => "Ōkami yo, waga teki wo kurae!"]);
     }
 
-    public function testAUserCannotPostAMessageInAPrivateThreadTheyAreNotParticipatingIn()
+    public function testAUserCannotPostAMessageInAPrivateroomsTheyAreNotParticipatingIn()
     {
-        $thread = factory(ChatThread::class)->states(['private'])->create();
+        $room = factory(ChatRoom::class)->states(['private'])->create();
 
-        $this->postJson("/api/chat/threads/{$thread->id}/messages",
+        $this->postJson("/api/chat/rooms/{$room->id}/messages",
             factory(ChatMessage::class)->make(['title' => 'The wolf marks its prey', 'body' => "Ryu ga waga teki wo kurau!"])->jsonSerialize()
         );
 
         $this->assertResponseStatus(403);
 
-        $this->getJson("/api/chat/threads/{$thread->id}/messages")
+        $this->getJson("/api/chat/rooms/{$room->id}/messages")
             ->dontSeeJson(['title' => 'The wolf marks its prey', 'body' => "Ryu ga waga teki wo kurau!"]);
     }
 }

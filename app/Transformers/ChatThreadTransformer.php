@@ -4,22 +4,22 @@ namespace App\Transformers;
 
 
 use App\ChatParticipant;
-use App\ChatThread;
+use App\ChatRoom;
 
-class ChatThreadTransformer
+class ChatRoomTransformer
 {
-    public function transform(ChatThread $thread)
+    public function transform(ChatRoom $room)
     {
         return [
-            'topic'         =>  $thread->topic,
-            'messages'      =>  $thread->messages,
-            'participants'  =>  $this->transformParticipants($thread)
+            'topic'         =>  $room->topic,
+            'messages'      =>  $room->messages,
+            'participants'  =>  $this->transformParticipants($room)
         ];
     }
 
-    protected function transformParticipants(ChatThread $thread)
+    protected function transformParticipants(ChatRoom $room)
     {
-        return $thread->participants->transform(function (ChatParticipant $participant) {
+        return $room->participants->transform(function (ChatParticipant $participant) {
             return $this->transformParticipant($participant);
         })->toArray();
     }

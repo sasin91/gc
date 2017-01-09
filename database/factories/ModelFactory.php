@@ -101,13 +101,13 @@ $factory->define(App\ChatParticipant::class, function (Faker\Generator $faker) {
         'user_id' =>  function () {
              return factory(App\User::class)->create()->id;
         } ,
-        'chat_thread_id' =>  function () {
-             return factory(App\ChatThread::class)->create()->id;
+        'chat_room_id' =>  function () {
+             return factory(App\ChatRoom::class)->create()->id;
         } ,
     ];
 });
 
-$factory->define(App\ChatThread::class, function (Faker\Generator $faker) {
+$factory->define(App\ChatRoom::class, function (Faker\Generator $faker) {
     return [
         'team_id' =>  function () {
              return factory(App\Team::class)->create()->id;
@@ -117,13 +117,13 @@ $factory->define(App\ChatThread::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->state(\App\ChatThread::class, 'public', function ($faker) {
+$factory->state(\App\ChatRoom::class, 'public', function ($faker) {
     return [
         'isPublic'   =>  true
     ];
 });
 
-$factory->state(\App\ChatThread::class, 'private', function ($faker) {
+$factory->state(\App\ChatRoom::class, 'private', function ($faker) {
    return [
        'isPublic'   =>  false
    ];

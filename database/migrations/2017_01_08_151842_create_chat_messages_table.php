@@ -14,8 +14,8 @@ class CreateChatMessagesTable extends Migration
     {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('chat_thread_id')->index();
-            $table->foreign('chat_thread_id')->references('id')->on('chat_threads');
+            $table->unsignedInteger('chat_room_id')->index();
+            $table->foreign('chat_room_id')->references('id')->on('chat_rooms');
             $table->unsignedInteger('chat_participant_id')->index();
             $table->foreign('chat_participant_id')->references('id')->on('chat_participants');
             $table->string('title');

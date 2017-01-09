@@ -8,7 +8,7 @@ class ChatParticipant extends Model
 {
     protected $fillable = [
         'user_id',
-        'chat_thread_id',
+        'chat_room_id',
     ];
 
     public function scopeParticipatorsIn()
@@ -23,6 +23,6 @@ class ChatParticipant extends Model
 
     public function thread()
     {
-        return $this->belongsTo(ChatThread::class);
+        return $this->belongsTo(ChatRoom::class);
     }
 }

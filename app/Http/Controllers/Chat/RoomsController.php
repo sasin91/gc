@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Chat;
 
-use App\ChatThread;
-use App\Transformers\ChatThreadTransformer;
+use App\ChatRoom;
+use App\Transformers\ChatRoomTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ThreadsController extends Controller
+class RoomsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,13 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        $publicThreads = ChatThread::onlyPublic()->get();
+        $publicRooms = ChatRoom::onlyPublic()->get();
 
         if (request()->user()->hasTeams()) {
-            return $publicThreads->merge(ChatThread::forTeam(request()->user()->currentTeam())->get());
+            return $publicRooms->merge(ChatRoom::forTeam(request()->user()->currentTeam())->get());
         }
 
-        return $publicThreads;
+        return $publicRooms;
     }
 
     /**
@@ -49,21 +49,21 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ChatThread  $chatThread
+     * @param  \App\ChatRoom  $ChatRoom
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return (new ChatThreadTransformer)->transform(ChatThread::find($id)->load(['team', 'participants']));
+        return (new ChatRoomTransformer)->transform(ChatRoom::find($id)->load(['team', 'participants']));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ChatThread  $chatThread
+     * @param  \App\ChatRoom  $ChatRoom
      * @return \Illuminate\Http\Response
      */
-    public function edit(ChatThread $chatThread)
+    public function edit(ChatRoom $ChatRoom)
     {
         //
     }
@@ -72,10 +72,10 @@ class ThreadsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ChatThread  $chatThread
+     * @param  \App\ChatRoom  $ChatRoom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ChatThread $chatThread)
+    public function update(Request $request, ChatRoom $ChatRoom)
     {
         //
     }
@@ -83,10 +83,10 @@ class ThreadsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ChatThread  $chatThread
+     * @param  \App\ChatRoom  $ChatRoom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ChatThread $chatThread)
+    public function destroy(ChatRoom $ChatRoom)
     {
         //
     }

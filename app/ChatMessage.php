@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChatMessage extends Model
 {
     protected $fillable = [
-        'chat_thread_id',
+        'chat_room_id',
         'chat_participant_id',
         'title',
         'body'
@@ -15,7 +15,7 @@ class ChatMessage extends Model
 
     public function thread()
     {
-        $this->belongsTo(ChatThread::class);
+        $this->belongsTo(ChatRoom::class);
     }
 
     public function participant()

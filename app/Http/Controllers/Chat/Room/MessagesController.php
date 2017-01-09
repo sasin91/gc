@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Chat\Thread;
+namespace App\Http\Controllers\Chat\Room;
 
 use App\ChatMessage;
 use App\ChatParticipant;
-use App\ChatThread;
+use App\ChatRoom;
 use App\Transformers\ChatMessageTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,9 +16,9 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ChatThread $thread)
+    public function index(ChatRoom $room)
     {
-        return $thread->messages;
+        return $room->messages;
     }
 
     /**
@@ -37,20 +37,20 @@ class MessagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ChatThread $thread)
+    public function store(Request $request, ChatRoom $room)
     {
-        if (! $thread->isPublic ) {
-            abort_unless($request->user()->onTeam($thread->team), 403, "User must be a member of the Team owning a private thread.");
+        if (! $room->isPublic ) {
+            abort_unless($request->user()->onTeam($room->team), 403, "User must be a member of the Team owning a private Room.");
         }
-        if (ChatParticipant::where('chat_thread_id', $thread->id)
+        if (ChatParticipant::where('chat_Room_id', $room->id)
                            ->where('user_id', $request->user()->id)
                            ->get()
                            ->isEmpty()
         ) {
-            $thread->participateAs($request->user());
+            $room->participateAs($request->user());
         }
 
-        $thread->messages()->save(new ChatMessage($request->all()));
+        $room->messages()->save(new ChatMessage($request->all()));
     }
 
     /**
