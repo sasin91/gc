@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     });
 });
 
+Route::post('servers/join/{server}', 'ServersController@join');
+Route::post('servers/leave/{server}', 'ServersController@leave');
 Route::resource('servers', 'ServersController');
 
 Route::get('news/search/{article}', 'NewsController@search');

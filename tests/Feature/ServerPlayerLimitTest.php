@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use App\Repositories\ServerRepositoryContract;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 /**
  * @group Server
@@ -31,5 +32,24 @@ class ServerPlayerLimitTest extends TestCase
 		$this->getJson("/api/servers/{$server->id}")
 			 ->assertResponseOk()
 			 ->seeJson(['player_limit' => 100]);		
+	}
+
+	public function testCannotExceedPlayerLimit()
+	{
+		$this->disableExceptionHandling();
+
+		$server = factory(App\Server::class)->create(['player_limit' => 0]);
+
+		try {
+			resolve(ServerRepositoryContract::class)->join(
+				$server, 
+				$this->user()
+			);
+		} catch (\OutOfBoundsException $e) {
+			$this->assertEquals(
+				"Player limit reached.",
+				 $e->getMessage()
+			);
+		}
 	}
 }

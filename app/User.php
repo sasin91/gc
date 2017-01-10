@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Server;
 use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 use Laravel\Spark\CanJoinTeams;
 use Laravel\Spark\Spark;
 use Laravel\Spark\User as SparkUser;
-use Illuminate\Support\Collection;
 
 /**
  * Class User
@@ -74,5 +75,10 @@ class User extends SparkUser
     public function scopeOnlyOnline($query)
     {
         return $query->where('online', '=', true);
+    }
+
+    public function servers()
+    {
+        return $this->belongsToMany(Server::class);
     }
 }

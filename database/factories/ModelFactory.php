@@ -133,6 +133,10 @@ $factory->define(App\Server::class, function ($faker) {
     return [
         'name'          =>  $faker->name,
         'ip'            =>  $faker->ipv4,
-        'player_limit'  =>  $faker->numberBetween(5,100)
+        'map'           =>  $faker->word,
+        'gameType'      =>  $faker->word,
+        'player_limit'  =>  $faker->numberBetween(5,100),
+        'players'       =>  0,
+        'MNP'           =>  $faker->word
     ];
 });

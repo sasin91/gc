@@ -2,15 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Formatters\DataStringFormatter;
 use App\Http\Requests\{StoreServerRequest, UpdateServerRequest};
+use App\Repositories\ServerRepository;
+use App\Repositories\ServerRepositoryContract;
 use App\Server;
 use Illuminate\Http\Request;
 
 class ServersController extends Controller
 {
-    public function __construct()
+    /**
+     * Servers Repository
+     * @var ServerRepository
+     */
+    protected $servers;
+
+    /**
+     * ServersController Constructor.
+     * 
+     * @param ServerRepositoryContract $repository 
+     */
+    public function __construct(ServerRepositoryContract $repository)
     {
-        $this->middleware(['auth:api', 'dev'])->only(['store', 'update', 'destroy']);
+        $this->middleware(['auth:api', 'dev'])
+             ->only(['store', 'update', 'destroy']);
+
+        $this->servers = $repository;
+    }
+
+    /**
+     * Join a Server as the current User.
+     * 
+     * @param  Server $server
+     * @return void
+     */
+    public function join(Server $server)
+    {
+        $this->servers->join($server);
+    }
+
+    /**
+     * Leave a Server as the current User
+     * 
+     * @param  Server $server
+     * @return void         
+     */
+    public function leave(Server $server)
+    {
+        $this->servers->leave($server);
     }
 
     /**
@@ -21,16 +60,6 @@ class ServersController extends Controller
     public function index()
     {
         return Server::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -53,17 +82,7 @@ class ServersController extends Controller
     public function show(Server $server)
     {
         return $server;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Server  $server
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Server $server)
-    {
-        //
+        //return (new DataStringFormatter)->format($server->jsonSerialize());
     }
 
     /**

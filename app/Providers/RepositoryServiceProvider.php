@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\FriendsRepository;
 use App\Repositories\FriendsRepositoryContract;
+use App\Repositories\ServerRepository;
+use App\Repositories\ServerRepositoryContract;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -22,7 +24,15 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(FriendsRepositoryContract::class, FriendsRepository::class);
+        $this->app->bind(
+            FriendsRepositoryContract::class,
+            FriendsRepository::class
+        );
+
+        $this->app->bind(
+            ServerRepositoryContract::class,
+            ServerRepository::class
+        );
     }
 
     /**
@@ -32,6 +42,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [FriendsRepositoryContract::class];
+        return [
+            FriendsRepositoryContract::class,
+            ServerRepositoryContract::class
+        ];
     }
 }
