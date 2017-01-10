@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Event;
  */
 class ServerRepository implements ServerRepositoryContract
 {
-/**
+    /**
 	 * The current User.
-	 * @var App\User
+	 * @var \App\User
 	 */
 	protected $user;
 
@@ -40,7 +40,7 @@ class ServerRepository implements ServerRepositoryContract
      * defaults to currently authenticated User.
      *
      * @param  User   $user
-     * @return FriendsRepositoryContract
+     * @return ServerRepositoryContract
      */
     public function forUser(User $user)
     {
@@ -94,7 +94,7 @@ class ServerRepository implements ServerRepositoryContract
     	$server->players--;
     	$server->save();
 
-    	return $this->user()->servers()->detach($server);
+    	$this->user()->servers()->detach($server);
 
         Event::fire(new PlayerLeft($server, $this->user()));
     }
