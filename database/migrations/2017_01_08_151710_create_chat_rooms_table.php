@@ -16,8 +16,21 @@ class CreateChatRoomsTable extends Migration
             $table->increments('id');
             $table->boolean('isPublic')->default(true);
             $table->string('topic');
+            
             $table->unsignedInteger('team_id')->nullable();
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')
+                  ->references('id')
+                  ->on('teams')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }

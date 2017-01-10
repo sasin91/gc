@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\ChatroomRepository;
+use App\Repositories\ChatroomRepositoryContract;
 use App\Repositories\FriendsRepository;
 use App\Repositories\FriendsRepositoryContract;
 use App\Repositories\ServerRepository;
@@ -33,6 +35,11 @@ class RepositoryServiceProvider extends ServiceProvider
             ServerRepositoryContract::class,
             ServerRepository::class
         );
+
+        $this->app->bind(
+            ChatroomRepositoryContract::class,
+            ChatroomRepository::class
+        );
     }
 
     /**
@@ -44,7 +51,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         return [
             FriendsRepositoryContract::class,
-            ServerRepositoryContract::class
+            ServerRepositoryContract::class,
+            ChatroomRepositoryContract::class
         ];
     }
 }

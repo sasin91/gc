@@ -3,12 +3,35 @@
 namespace App\Http\Controllers\Chat;
 
 use App\ChatRoom;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreChatRoomRequest;
+use App\Http\Requests\UpdateChatRoomRequest;
+use App\Repositories\ChatroomRepository;
+use App\Repositories\ChatroomRepositoryContract;
 use App\Transformers\ChatRoomTransformer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class RoomsController extends Controller
 {
+    /**
+     * ChatRooms Repository
+     * @var ChatroomRepository
+     */
+    protected $rooms;
+
+    /**
+     * RoomsController Constructor
+     * 
+     * @param ChatroomRepositoryContract $repository 
+     */
+    public function __construct(ChatroomRepositoryContract $repository)
+    {
+        $this->middleware('auth:api')
+             ->only(['store', 'update', 'destroy']);
+
+        $this->rooms = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,23 +39,7 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        $publicRooms = ChatRoom::onlyPublic()->get();
-
-        if (request()->user()->hasTeams()) {
-            return $publicRooms->merge(ChatRoom::forTeam(request()->user()->currentTeam())->get());
-        }
-
-        return $publicRooms;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->rooms->all();
     }
 
     /**
@@ -41,9 +48,15 @@ class RoomsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreChatRoomRequest $request)
     {
-        //
+        if ($request->forTeam) {
+            return $this->rooms
+                        ->forCurrentTeam()
+                        ->create($request->all());
+        }
+
+        return $this->rooms->create($request->all());
     }
 
     /**
@@ -54,18 +67,9 @@ class RoomsController extends Controller
      */
     public function show($id)
     {
-        return (new ChatRoomTransformer)->transform(ChatRoom::find($id)->load(['team', 'participants']));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ChatRoom  $ChatRoom
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ChatRoom $ChatRoom)
-    {
-        //
+        return (new ChatRoomTransformer)->transform(
+            $this->rooms->find($id)
+        );
     }
 
     /**
@@ -75,9 +79,10 @@ class RoomsController extends Controller
      * @param  \App\ChatRoom  $ChatRoom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ChatRoom $ChatRoom)
-    {
-        //
+    public function update(UpdateChatRoomRequest $request,
+                           ChatRoom $ChatRoom
+    ) {
+        $this->rooms->update($ChatRoom, $request->all());
     }
 
     /**
@@ -88,6 +93,6 @@ class RoomsController extends Controller
      */
     public function destroy(ChatRoom $ChatRoom)
     {
-        //
+        return $this->rooms->destroy($ChatRoom);
     }
 }

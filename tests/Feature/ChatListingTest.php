@@ -47,7 +47,9 @@ class ChatListingTest extends TestCase
     {
         $this->disableExceptionHandling();
 
-        $room = factory(ChatRoom::class)->states(['public'])->create(['topic' => 'Latest flashy trends.'])->addParticipant($this->user());
+        $room = factory(ChatRoom::class)->states(['public'])->create([
+            'topic' => 'Latest flashy trends.'
+        ])->addParticipant($this->user());
 
         $this->getJson("/api/chat/rooms/{$room->id}")
             ->seeJson(['topic' => 'Latest flashy trends.'])

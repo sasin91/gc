@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -21,7 +22,8 @@ class ChatRoom extends Model
     protected $fillable = [
         'isPublic',
         'topic',
-        'team_id'
+        'team_id',
+        'user_id'
     ];
 
     protected $casts = [
@@ -114,6 +116,11 @@ class ChatRoom extends Model
     public function team()
     {
         return $this->belongsTo(Spark::team());
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function participants()
