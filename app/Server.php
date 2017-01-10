@@ -9,7 +9,10 @@ class Server extends Model
 	protected $fillable = [
 		'name',
 		'ip',
-		'player_limit'
+		'gameType',
+		'player_limit',
+		'CNP',
+		'MNP'
 	];
 
 	protected $casts = [
