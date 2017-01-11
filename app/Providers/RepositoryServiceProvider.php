@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\ChatroomRepository;
 use App\Repositories\ChatroomRepositoryContract;
+use App\Repositories\Forum\ForumPostsRepository;
+use App\Repositories\Forum\ForumPostsRepositoryContract;
+use App\Repositories\Forum\ForumThreadsRepository;
+use App\Repositories\Forum\ForumThreadsRepositoryContract;
 use App\Repositories\FriendsRepository;
 use App\Repositories\FriendsRepositoryContract;
 use App\Repositories\ServerRepository;
@@ -40,6 +44,16 @@ class RepositoryServiceProvider extends ServiceProvider
             ChatroomRepositoryContract::class,
             ChatroomRepository::class
         );
+
+        $this->app->bind(
+            ForumThreadsRepositoryContract::class,
+            ForumThreadsRepository::class
+        );
+
+        $this->app->bind(
+            ForumPostsRepositoryContract::class,
+            ForumPostsRepository::class
+        );
     }
 
     /**
@@ -52,7 +66,9 @@ class RepositoryServiceProvider extends ServiceProvider
         return [
             FriendsRepositoryContract::class,
             ServerRepositoryContract::class,
-            ChatroomRepositoryContract::class
+            ChatroomRepositoryContract::class,
+            ForumThreadsRepositoryContract::class,
+            ForumPostsRepositoryContract::class,
         ];
     }
 }

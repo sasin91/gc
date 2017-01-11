@@ -45,3 +45,15 @@ Route::resource('news', 'NewsController');
 
 Route::get('news/posts/search/{post}', 'News\PostsController@search');
 Route::resource('news.posts', 'News\PostsController');
+
+Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function() {
+    Route::resource('categories', 'ForumCategoriesController');
+
+    Route::get(
+        'categories/{category}/threads/locked',
+        'ForumThreadsController@locked'
+    );
+    Route::resource('categories.threads', 'ForumThreadsController');
+    Route::resource('categories.threads.posts', 'ForumPostsController');
+
+});
