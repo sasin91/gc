@@ -31,7 +31,8 @@ class ManagingFriendshipsTest extends TestCase
 		->getJson("/api/friends/denied")
 		->assertResponseOk()
 		->seeJson([
-			'sender_id'	=>	$friend->id
+			'name'	=>	$friend->name,
+            'email' =>  $friend->email
 		]);
 	}
 
@@ -48,6 +49,7 @@ class ManagingFriendshipsTest extends TestCase
 		->getJson("/api/friends")
 		->assertResponseOk()
 		->seeJson([
+            'name'	=>	$friend->name,
 			'email'	=>	$friend->email
 		]);
 	}
@@ -63,7 +65,8 @@ class ManagingFriendshipsTest extends TestCase
 		->assertResponseOk()
 		->getJson("/api/friends/blocked")
 		->seeJson([
-			'recipient_id'	=>	$friend->id
+            'name'	=>	$friend->name,
+            'email'	=>	$friend->email
 		]);
 	}
 

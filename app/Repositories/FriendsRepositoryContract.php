@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Http\Requests\UpdateFriendRequest;
 use App\User;
+use Hootlex\Friendships\Models\Friendship;
+use Illuminate\Support\Collection;
 
 /**
  * Interface FriendsRepositoryContract
@@ -76,7 +78,7 @@ interface FriendsRepositoryContract
      * Block given friend.
      * 
      * @param  User   $friend
-     * @return Friendship
+     * @return boolean
      */
     public function block(User $friend);
 
@@ -92,7 +94,7 @@ interface FriendsRepositoryContract
      * Get the mutual friends between current and given User.
      * 
      * @param  User   $friend
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function mutual(User $friend);
 

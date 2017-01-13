@@ -51,10 +51,9 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function show(NewsArticle $newsArticle)
+    public function show(int $id)
     {
-        dd($newsArticle);
-        return $newsArticle->load(['news', 'photos', 'videos', 'author', 'tags']);
+        return NewsArticle::findOrFail($id)->load(['news', 'photos', 'videos', 'author', 'tags']);
     }
 
     /**
@@ -64,9 +63,9 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NewsArticle $newsArticle)
+    public function update(Request $request, int $id)
     {
-        $newsArticle->update($request->all());
+        NewsArticle::findOrFail($id)->update($request->all());
     }
 
     /**
@@ -75,8 +74,8 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NewsArticle $newsArticle)
+    public function destroy(int $id)
     {
-        $newsArticle->delete();
+        NewsArticle::findOrFail($id)->delete();
     }
 }

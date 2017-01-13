@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateFriendRequest;
 use App\Repositories\FriendsRepositoryContract;
 use App\User;
 use Hootlex\Friendships\Models\Friendship;
+use Hootlex\Friendships\Status;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -16,7 +17,7 @@ class FriendsRepository implements FriendsRepositoryContract
 {
 	/**
 	 * The current User.
-	 * @var App\User
+	 * @var \App\User
 	 */
 	protected $user;
 
@@ -63,7 +64,7 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function pending()
 	{
-		return $this->user()->getPendingFriendships();
+		return $this->user()->getPendingFriendships()->load(['sender', 'recipient']);
 	}
 
 	/**
@@ -72,7 +73,7 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function blocked()
 	{
-		return $this->user()->getBlockedFriendships();
+		return $this->user()->getBlockedFriendships()->load(['sender', 'recipient']);
 	}
 
 	/**
@@ -82,7 +83,7 @@ class FriendsRepository implements FriendsRepositoryContract
 	 */
 	public function denied()
 	{
-		return $this->user()->getDeniedFriendships();
+		return $this->user()->getDeniedFriendships()->load(['sender', 'recipient']);
 	}
 
 	/**
@@ -125,11 +126,11 @@ class FriendsRepository implements FriendsRepositoryContract
 	 * Block given friend.
 	 * 
 	 * @param  User   $friend
-	 * @return Friendship
+	 * @return boolean
 	 */
 	public function block(User $friend)
 	{
-		$this->user()->blockFriend($friend);
+		return $this->user()->blockFriend($friend)->status === Status::BLOCKED;
 	}
 
 	/**
@@ -181,11 +182,11 @@ class FriendsRepository implements FriendsRepositoryContract
 	 * Get the mutual friends between current and given User.
 	 * 
 	 * @param  User   $friend
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Collection
 	 */
 	public function mutual(User $friend)
 	{
-		return $this->user()->getMutualFriends($user);
+		return $this->user()->getMutualFriends($friend);
 	}
 
 	/**

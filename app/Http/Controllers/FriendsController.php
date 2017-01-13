@@ -6,7 +6,8 @@ use App\Http\Requests\StoreFriendRequest;
 use App\Http\Requests\UpdateFriendRequest;
 use App\Repositories\FriendsRepositoryContract as FriendsRepository;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
+use Hootlex\Friendships\Models\Friendship;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 
 class FriendsController extends Controller
@@ -88,7 +89,7 @@ class FriendsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection
      */
     public function index()
     {
@@ -110,7 +111,7 @@ class FriendsController extends Controller
      * Display the specified resource.
      *
      * @param  integer $user_id
-     * @return \Illuminate\Http\Response
+     * @return Friendship
      */
     public function show($user_id)
     {
@@ -161,7 +162,7 @@ class FriendsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  integer $user_id
-     * @return \Illuminate\Http\Response
+     * @return boolean
      */
     public function destroy($user_id)
     {
