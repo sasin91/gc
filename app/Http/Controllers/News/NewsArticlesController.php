@@ -1,31 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\News;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\News\StoreNewsArticleRequest;
 use App\News;
-use App\Http\Requests\{StoreNewsRequest, UpdateNewsRequest};
+use App\NewsArticle;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class NewsArticlesController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api')->only(['store', 'update', 'delete']);
     }
-
-    public function search($query)
-    {
-        return News::search($query)->get();
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(News $news)
     {
-        return News::with('moderator')->get();
+        return $news->articles;
     }
 
     /**
@@ -35,7 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return (new News)->getFillable();
+        return (new NewsArticle)->getFillable();
     }
 
     /**
@@ -44,42 +40,43 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNewsRequest $request)
+    public function store(StoreNewsArticleRequest $request, News $news)
     {
-        News::create($request->all());
+        $news->articles()->save(new NewsArticle($request->all()));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\News  $News
+     * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(NewsArticle $newsArticle)
     {
-        return $news->load(['articles', 'moderator']);
+        dd($newsArticle);
+        return $newsArticle->load(['news', 'photos', 'videos', 'author', 'tags']);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\News  $News
+     * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateNewsRequest $request, News $news) 
+    public function update(Request $request, NewsArticle $newsArticle)
     {
-        $news->update($request->all());  
+        $newsArticle->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\News  $News
+     * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(NewsArticle $newsArticle)
     {
-        $news->delete();
+        $newsArticle->delete();
     }
 }

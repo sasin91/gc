@@ -20,7 +20,6 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->group(['prefix' => 'friends'], function (Router $route) {
         $route->get('mutual/{user}', 'FriendsController@mutual');
         $route->get('contains/{user}', 'FriendsController@contains');
-        $route->get('hasBlockedMe/{user}', 'FriendsController@hasBlockedMe');
 
         $route->get('denied', 'FriendsController@denied');
         $route->get('blocked', 'FriendsController@blocked');
@@ -40,11 +39,11 @@ Route::post('servers/join/{server}', 'ServersController@join');
 Route::post('servers/leave/{server}', 'ServersController@leave');
 Route::resource('servers', 'ServersController');
 
-Route::get('news/search/{article}', 'NewsController@search');
+Route::get('news/search/{query}', 'NewsController@search');
 Route::resource('news', 'NewsController');
 
-Route::get('news/posts/search/{post}', 'News\PostsController@search');
-Route::resource('news.posts', 'News\PostsController');
+Route::get('news/articles/search/{query}', 'News\NewsArticlesController@search');
+Route::resource('news.articles', 'News\NewsArticlesController');
 
 Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function() {
     Route::resource('categories', 'ForumCategoriesController');

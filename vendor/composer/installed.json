@@ -4141,63 +4141,6 @@
         ]
     },
     {
-        "name": "rtconner/laravel-tagging",
-        "version": "2.2.1",
-        "version_normalized": "2.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/rtconner/laravel-tagging.git",
-            "reference": "ce928fbd43ed011847e0c245033b7447f54bf0c6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/rtconner/laravel-tagging/zipball/ce928fbd43ed011847e0c245033b7447f54bf0c6",
-            "reference": "ce928fbd43ed011847e0c245033b7447f54bf0c6",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/database": ">= 5.0",
-            "illuminate/support": ">= 5.0",
-            "php": ">=5.5.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9",
-            "orchestra/testbench": "~3.0",
-            "phpunit/phpunit": "~4.0",
-            "vlucas/phpdotenv": "~2.0"
-        },
-        "time": "2016-09-12T21:50:32+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Conner\\Tagging\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Robert Conner",
-                "email": "rtconner@smarter.bz"
-            }
-        ],
-        "description": "Use PHP traits to extend Laravel Eloquent Models to allow Tags. Models can be marked as Taggable.",
-        "homepage": "https://smartersoftware.net/packages/laravel-tagging-taggable",
-        "keywords": [
-            "Taggable",
-            "eloquent",
-            "laravel",
-            "laravel5",
-            "tag",
-            "tagged",
-            "tagging",
-            "tags"
-        ]
-    },
-    {
         "name": "laracasts/generators",
         "version": "1.1.3",
         "version_normalized": "1.1.3.0",

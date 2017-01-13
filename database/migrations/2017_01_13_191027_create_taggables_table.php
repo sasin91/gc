@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsArticlesTable extends Migration
+class CreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateNewsArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_articles', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('author_id')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('author_id')->references('id')->on('users');
-            $table->string('title');
-            $table->string('synopsis');
+            $table->unsignedInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->unsignedInteger('taggable_id');
+            $table->string('taggable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateNewsArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('news_articles');
+        Schema::drop('taggables');
     }
 }

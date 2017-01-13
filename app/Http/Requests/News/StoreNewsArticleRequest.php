@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\News;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNewsPostRequest extends FormRequest
+class StoreNewsArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreNewsPostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**

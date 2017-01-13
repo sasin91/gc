@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\{NewsArticle, NewsPost, Photo, Video};
+use App\{News, NewsArticle, Photo, Video};
 
 /**
  * @group News
@@ -13,35 +13,37 @@ class NewsContentTest extends TestCase
 {
 	use DatabaseSetup, Authentication;
 
-    public function testUserCanSeeArticleWithPosts()
+    public function testUserCanSeeNewsWitharticles()
     {
-    	$article = factory(NewsArticle::class)->create(['title'	=>	'hello world']);
+    	$news = factory(News::class)->create(['title'	=>	'hello world']);
 
-		$article->posts()->saveMany(factory(NewsPost::class)->times(3)->make());
+		$news->articles()->saveMany(factory(NewsArticle::class)->times(3)->make());
 
-		$this->getJson("/api/news/{$article->id}")
+		$this->disableExceptionHandling();
+
+		$this->getJson("/api/news/{$news->id}")
 			 ->seeJsonContains(['title' => 'hello world'])
-			 ->assertCount(3, $article->posts);
+			 ->assertCount(3, $news->articles);
 
 	}
 
-	public function testPostCanContainMedia()
+	public function testArticleCanContainMedia()
 	{
 		$this->disableExceptionHandling();
 
-		$article = factory(NewsArticle::class)->create(['title' 	=>	'hello world']);
-		$post = $article->posts()->save(factory(NewsPost::class)->make());
+		$news = factory(News::class)->create(['title' 	=>	'hello world']);
+		$article = $news->articles()->save(factory(NewsArticle::class)->make());
 
-		$post->photos()->saveMany(factory(Photo::class)->times(3)->make());
-		$post->videos()->save(factory(Video::class)->make());
+		$article->photos()->saveMany(factory(Photo::class)->times(3)->make());
+		$article->videos()->save(factory(Video::class)->make());
 
-		$this->getJson("/api/news/{$article->id}/posts/{$post->id}")
+		$this->getJson("/api/news/{$news->id}/articles/{$article->id}")
 			 ->seeJson([
-			 	'photoable_type' => 'App\NewsPost',
-			 	'photoable_id'	 =>	$post->id,
-				'videoable_type' => 'App\NewsPost',
-				'videoable_id'	 =>	$post->id
+			 	'photoable_type' => 'App\NewsArticle',
+			 	'photoable_id'	 =>	$article->id,
+				'videoable_type' => 'App\NewsArticle',
+				'videoable_id'	 =>	$article->id
 			 ])
-			 ->assertCount(3, $post->photos);
+			 ->assertCount(3, $article->photos);
 	}
 }

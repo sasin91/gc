@@ -26,22 +26,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\NewsArticle::class, function ($faker) {
 	return [
-		'author_id'	=>	function () {
-			return factory(App\User::class)->create()->id;
-		},
-		'title'		=>	$faker->title,
-		'synopsis'	=>	$faker->catchPhrase
+        'news_id'       =>  function () {
+            return factory(App\News::class)->create()->id;
+        },
+        'author_id'     =>  function () {
+            return factory(App\User::class)->create()->id;
+        },
+        'title'         =>  $faker->catchPhrase,
+        'description'   =>  $faker->sentence,
+        'body'          =>  $faker->paragraph   
 	];
 });
 
-$factory->define(App\NewsPost::class, function ($faker) {
+$factory->define(App\News::class, function ($faker) {
 	return [
-		'article_id'	=>	function () {
-			return factory(App\NewsArticle::class)->create()->id;
-		},
-		'title'			=>	$faker->catchPhrase,
-		'description'	=>	$faker->sentence,
-		'body'			=>	$faker->paragraph	
+        'moderator_id'  =>  function () {
+            return factory(App\User::class)->create()->id;
+        },
+		'title'       =>  $faker->title,
+        'synopsis'  =>  $faker->catchPhrase
 	];
 });
 

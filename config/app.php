@@ -168,7 +168,6 @@ return [
          */
         Laravel\Scout\ScoutServiceProvider::class,
         Laracasts\Generators\GeneratorsServiceProvider::class,
-        Conner\Tagging\Providers\TaggingServiceProvider::class,
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
