@@ -171,6 +171,7 @@ return [
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
+        Riari\Forum\ForumServiceProvider::class,
         //
 
         /*

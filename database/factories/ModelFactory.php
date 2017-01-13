@@ -142,35 +142,5 @@ $factory->define(App\Server::class, function ($faker) {
         'players'       =>  0,
         'MNP'           =>  $faker->word
     ];
-});$factory->define(App\ForumThread::class, function (Faker\Generator $faker) {
-    return [
-        'author_id' =>  function () {
-             return factory(App\User::class)->create()->id;
-        } ,
-        'category_id' =>  function () {
-            return factory(App\ForumCategory::class)->create()->id;
-        } ,
-        'title'  =>  $faker->word ,
-        'pinned' =>  false ,
-        'locked' =>  false ,
-    ];
-});
-
-$factory->define(App\ForumPost::class, function (Faker\Generator $faker) {
-    return [
-        'thread_id' =>  $faker->randomNumber() ,
-        'user_id' =>  function () {
-             return factory(App\User::class)->create()->id;
-        } ,
-        'title' =>  $faker->word ,
-        'content' =>  $faker->text ,
-    ];
-});
-
-$factory->define(App\ForumCategory::class, function (Faker\Generator $faker) {
-    return [
-        'title' =>  $faker->word ,
-        'subTitle' =>  $faker->word ,
-    ];
 });
 
