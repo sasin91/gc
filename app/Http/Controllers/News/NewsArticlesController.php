@@ -21,7 +21,7 @@ class NewsArticlesController extends Controller
      */
     public function index(News $news)
     {
-        return $news->articles;
+        return $news->articles->load(['author', 'tags']);
     }
 
     /**
@@ -51,9 +51,11 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(News $news, $id)
     {
-        return NewsArticle::findOrFail($id)->load(['news', 'photos', 'videos', 'author', 'tags']);
+        return NewsArticle::remember(60)
+                          ->findOrFail($id)
+                          ->load(['news', 'photos', 'videos', 'author', 'tags']);
     }
 
     /**
@@ -63,9 +65,9 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, News $news, NewsArticle $article)
     {
-        NewsArticle::findOrFail($id)->update($request->all());
+        return response()->json($article->update($request->all()));
     }
 
     /**
@@ -74,8 +76,8 @@ class NewsArticlesController extends Controller
      * @param  \App\NewsArticle  $newsArticle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(News $news, NewsArticle $article)
     {
-        NewsArticle::findOrFail($id)->delete();
+        return response()->json($article->delete());
     }
 }

@@ -18,6 +18,11 @@ class NewsController extends Controller
         return News::search($query)->get();
     }
 
+    public function latest(int $amount = 10)
+    {
+        return News::orderBy('created_at', 'desc')->take(8)->get();
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -172,6 +172,7 @@ return [
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
         Riari\Forum\ForumServiceProvider::class,
+        Sven\ArtisanView\ArtisanViewServiceProvider::class,
         //
 
         /*

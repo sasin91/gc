@@ -14,7 +14,8 @@
 
     <!-- CSS -->
     <link href="/css/sweetalert.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/lity.css"> -->
 
     <!-- Scripts -->
     @yield('scripts', '')
@@ -47,7 +48,8 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="/js/app.js"></script>
+    <script src="{{ elixir('js/app.js') }}"></script>
     <script src="/js/sweetalert.min.js"></script>
+    <!--<script src="/js/lity.js"></script>-->
 </body>
 </html>

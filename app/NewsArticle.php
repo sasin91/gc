@@ -6,10 +6,11 @@ use App\Tag;
 use App\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Watson\Rememberable\Rememberable;
 
 class NewsArticle extends Model
 {
-    use Searchable;
+    use Searchable, Rememberable;
 
     protected $fillable = [
         'title','description','body'

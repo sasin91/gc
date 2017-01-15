@@ -144,3 +144,8 @@ $factory->define(App\Server::class, function ($faker) {
     ];
 });
 
+$factory->define(App\Tag::class, function ($faker) {
+    return [
+        'name'  =>  $faker->word
+    ];
+});

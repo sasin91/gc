@@ -14,3 +14,20 @@
 Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
+
+Route::group(['prefix' => 'news'], function() {
+    Route::get('/', function () {
+    	return view('news.news-list');
+    });
+
+    Route::get('/{news}', function (App\News $news) {
+    	return view('news.news-articles-list', ['news' => $news]);
+    });
+
+    Route::get('/{news}/articles/{article}', function ($news, $article) {
+    	return view('news.articles.show-news-article', [
+    		'news_id'	  => $news,
+    		'article_id'  => $article
+    	]);
+    });
+});

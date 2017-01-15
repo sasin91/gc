@@ -39,6 +39,7 @@ Route::post('servers/join/{server}', 'ServersController@join');
 Route::post('servers/leave/{server}', 'ServersController@leave');
 Route::resource('servers', 'ServersController');
 
+Route::get('news/latest/{amount?}', 'NewsController@latest');
 Route::get('news/search/{query}', 'NewsController@search');
 Route::resource('news', 'NewsController');
 
