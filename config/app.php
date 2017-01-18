@@ -167,12 +167,10 @@ return [
          * Package Service Providers...
          */
         Laravel\Scout\ScoutServiceProvider::class,
-        Laracasts\Generators\GeneratorsServiceProvider::class,
         Hootlex\Friendships\FriendshipsServiceProvider::class,
-        Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
         Riari\Forum\ForumServiceProvider::class,
-        Sven\ArtisanView\ArtisanViewServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
         //
 
         /*
