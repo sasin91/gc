@@ -112,9 +112,9 @@ $factory->define(App\ChatParticipant::class, function (Faker\Generator $faker) {
 
 $factory->define(App\ChatRoom::class, function (Faker\Generator $faker) {
     return [
-        'team_id' =>  function () {
-             return factory(App\Team::class)->create()->id;
-        } ,
+//        'team_id' =>  function () {
+//             return factory(App\Team::class)->create()->id;
+//        } ,
 
         'topic' =>  $faker->bs
     ];

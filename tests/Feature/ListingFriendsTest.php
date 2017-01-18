@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use Hootlex\Friendships\Models\Friendship;
 use Hootlex\Friendships\Status;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,7 +19,7 @@ class FriendsListingsTest extends TestCase
 	{
 		$this->disableExceptionHandling();
 
-		$friends = factory(App\User::class)->times(5)->create()
+		$friends = factory(\App\User::class)->times(5)->create()
 		->map(function ($recipient) {
 			return (new Friendship)->fillRecipient($recipient)->fill([
 	            'status' => Status::ACCEPTED,
@@ -26,16 +28,18 @@ class FriendsListingsTest extends TestCase
 
 		$this->user()->friends()->saveMany($friends);
 
-		$this->getJson("/api/friends")
-			 ->assertResponseOk()
-			 ->assertCount(5, $this->decodeResponseJson());
+		$request = $this->getJson("/api/friends");
+		$request->assertStatus(200);
+
+		$response = json_decode($request->getContent(), true);
+        $this->assertCount(5, $response);
 	}
 
 	public function testAUserCanSeeTheirPendingFriendRequests()
 	{
 		$this->disableExceptionHandling();
 
-		$friends = factory(App\User::class)->times(5)->create()
+		$friends = factory(\App\User::class)->times(5)->create()
 		->map(function ($recipient) {
 			return (new Friendship)->fillRecipient($recipient)->fill([
 	            'status' => Status::PENDING,
@@ -44,8 +48,9 @@ class FriendsListingsTest extends TestCase
 
 		$this->user()->friends()->saveMany($friends);
 
-		$this->getJson("/api/friends/pending")
-		  	 ->assertResponseOk()
-		  	 ->assertCount(5, $this->decodeResponseJson());
+		$request = $this->getJson("/api/friends/pending");
+		$request->assertStatus(200);
+
+        $this->assertCount(5, json_decode($request->getContent()), true);
 	}
 }

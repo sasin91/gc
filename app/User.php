@@ -81,4 +81,9 @@ class User extends SparkUser
     {
         return $this->belongsToMany(Server::class);
     }
+
+    public function chatParticipants()
+    {
+        return $this->hasMany(ChatParticipant::class);
+    }
 }

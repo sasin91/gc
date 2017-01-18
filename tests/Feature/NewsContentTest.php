@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -13,7 +15,7 @@ class NewsContentTest extends TestCase
 {
 	use DatabaseSetup, Authentication;
 
-    public function testUserCanSeeNewsWitharticles()
+    public function testUserCanSeeNewsWithArticles()
     {
     	$news = factory(News::class)->create(['title'	=>	'hello world']);
 
@@ -22,8 +24,8 @@ class NewsContentTest extends TestCase
 		$this->disableExceptionHandling();
 
 		$this->getJson("/api/news/{$news->id}")
-			 ->seeJsonContains(['title' => 'hello world'])
-			 ->assertCount(3, $news->articles);
+             ->assertStatus(200)
+			 ->assertJson(['title' => 'hello world']);
 
 	}
 
@@ -38,12 +40,12 @@ class NewsContentTest extends TestCase
 		$article->videos()->save(factory(Video::class)->make());
 
 		$this->getJson("/api/news/{$news->id}/articles/{$article->id}")
-			 ->seeJson([
-			 	'photoable_type' => 'App\NewsArticle',
-			 	'photoable_id'	 =>	$article->id,
-				'videoable_type' => 'App\NewsArticle',
-				'videoable_id'	 =>	$article->id
-			 ])
-			 ->assertCount(3, $article->photos);
+			 ->assertStatus(200)
+             ->assertJson([
+                 'photos' => $article->photos->map->jsonSerialize()->toArray(),
+             ])
+            ->assertJson([
+                'videos' => $article->videos->map->jsonSerialize()->toArray()
+            ]);
 	}
 }

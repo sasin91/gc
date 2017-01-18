@@ -19,7 +19,7 @@ class ChatRoomTransformer
 
     protected function transformParticipants(ChatRoom $room)
     {
-        return $room->participants->transform(function (ChatParticipant $participant) {
+        return $room->participants->flatMap(function (ChatParticipant $participant) {
             return $this->transformParticipant($participant);
         })->toArray();
     }

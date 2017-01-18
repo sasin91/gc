@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use Laravel\Spark\Spark;
 
 
@@ -21,7 +23,7 @@ trait Authentication
     protected function setUpAuthentication()
     {
         if (static::$usesGenericUser) {
-            $this->be(factory(App\User::class)->create());
+            $this->be(factory(\App\User::class)->create());
         }
     }
 
@@ -29,7 +31,7 @@ trait Authentication
     {
         $email ?? $email = collect(Spark::$developers)->first();
 
-        $this->be(App\User::whereEmail($email)->firstOrFail());
+        $this->be(\App\User::whereEmail($email)->firstOrFail());
         return $this;
     }
 

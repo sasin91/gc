@@ -11,7 +11,6 @@ class ChatParticipantTransformer
     {
         return [
             'name'      =>  $participating->user->name,
-            'Rooms'  	=>  $participating->Rooms
         ];
     }
 }

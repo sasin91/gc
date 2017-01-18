@@ -11,18 +11,13 @@ class ChatParticipant extends Model
         'chat_room_id',
     ];
 
-    public function scopeParticipatorsIn()
-    {
-
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function thread()
+    public function room()
     {
-        return $this->belongsTo(ChatRoom::class);
+        return $this->belongsTo(ChatRoom::class, 'chat_room_id');
     }
 }
