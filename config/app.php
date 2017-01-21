@@ -169,7 +169,6 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
-        Riari\Forum\ForumServiceProvider::class,
         Laravel\Dusk\DuskServiceProvider::class,
         //
 

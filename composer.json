@@ -20,6 +20,7 @@
         "laravel/spark": "*@dev",
         "phpunit/phpunit": "^5.7",
         "riari/laravel-forum": "^4.0",
+        "riari/laravel-forum-frontend": "^1.1",
         "sasin91/laravel-repository": "dev-master",
         "watson/rememberable": "^2.0"
     },
