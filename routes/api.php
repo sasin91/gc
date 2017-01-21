@@ -35,6 +35,22 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     });
 });
 
+Route::group(['prefix' => 'forum', 'as' => 'forum.'], function() {
+    Route::resource('categories', 'ForumCategoryController', ['except' => ['create', 'edit']]);
+    Route::group(['prefix' => 'threads', 'as' => 'threads.'], function() {
+        Route::get('/', 'ForumThreadController@index')->name('index');
+        Route::get('mine', 'ForumThreadController@mine')->name('mine');
+        Route::get('latest', 'ForumThreadController@latest')->name('latest');
+        Route::get('popular', 'ForumThreadController@popular')->name('popular');
+    });
+    Route::resource('categories.threads', 'ForumCategory\ForumThreadsController', ['except' => ['create', 'edit']]);
+    Route::group(['prefix' => 'posts', 'as' => 'posts.'], function() {
+        Route::get('/', 'ForumPostController@index')->name('index');
+        Route::get('mine', 'ForumPostController@mine')->name('mine');
+    });
+    Route::resource('categories.threads.posts', 'ForumCategory\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
+});
+
 Route::post('servers/join/{server}', 'ServersController@join');
 Route::post('servers/leave/{server}', 'ServersController@leave');
 Route::resource('servers', 'ServersController');

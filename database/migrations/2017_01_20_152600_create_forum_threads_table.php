@@ -13,7 +13,31 @@ class CreateForumThreadsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('forum_threads', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('forum_category_id');
+            $table->foreign('forum_category_id')
+                  ->references('id')
+                  ->on('forum_categories')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+
+            $table->unsignedInteger('author_id')->nullable();
+            $table->foreign('author_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onUpdate('cascade');
+
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('pinned');
+            $table->boolean('locked');
+            $table->boolean('popular');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -23,6 +47,6 @@ class CreateForumThreadsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('forum_threads');
     }
 }

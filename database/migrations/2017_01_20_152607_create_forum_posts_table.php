@@ -13,7 +13,26 @@ class CreateForumPostsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('forum_posts', function (Blueprint $table) {
+            $table->increments('id');
+            
+            $table->unsignedInteger('forum_thread_id');
+            $table->foreign('forum_thread_id')
+                  ->references('id')
+                  ->on('forum_threads')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+
+            $table->unsignedInteger('author_id')->nullable();
+            $table->foreign('author_id')
+                  ->references('id')
+                  ->on('users');
+
+            $table->text('content');
+
+            $table->timestamps();
+            $table->softDeletes(); 
+        });
     }
 
     /**
@@ -23,6 +42,6 @@ class CreateForumPostsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table');
     }
 }

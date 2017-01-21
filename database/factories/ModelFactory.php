@@ -149,3 +149,57 @@ $factory->define(App\Tag::class, function ($faker) {
         'name'  =>  $faker->word
     ];
 });
+
+$factory->define(App\ForumCategory::class, function ($faker) {
+    return [
+        'title' => $faker->title,
+    ];
+});
+
+$factory->state(App\ForumCategory::class, 'forTeam', function ($faker) {
+    return [
+        'team_id'   =>  function () {
+            return factory(App\Team::class)->create()->id;
+        }
+    ];
+});
+
+$factory->define(App\ForumThread::class, function ($faker) {
+    return [
+        'forum_category_id' =>  function () {
+            return factory(App\ForumCategory::class)->create()->id;
+        },
+        'owner_id'  =>  function () {
+            return factory(App\User::class)->create()->id;
+        },
+
+        'title' =>  $faker->title,
+        'description'   =>  $faker->bs,
+        'pinned'    =>  false,
+        'locked'    =>  false
+    ];
+});
+
+$factory->state(App\ForumThread::class, 'pinned', function () {
+    return [
+        'pinned'    =>  true
+    ];
+});
+
+$factory->state(App\ForumThread::class, 'locked', function () {
+    return [
+        'locked'    =>  true
+    ];
+});
+
+$factory->define(App\ForumPost::class, function ($faker) {
+    return [
+        'forum_thread_id'   =>  function () {
+            return factory(App\ForumThread::class)->create()->id;
+        },
+        'author_id'  =>  function () {
+            return factory(App\User::class)->create()->id;
+        },
+        'content'   =>  $faker->paragraph
+    ];
+});

@@ -7,79 +7,29 @@ use Illuminate\Http\Request;
 
 class ForumThreadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	public function __construct()
+	{
+		$this->middleware('auth:api');
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	public function latest(int $limit = 10)
+	{
+      	return ForumThread::latest()->take($limit)->get();
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	public function popular(int $limit = 10)
+	{
+   		return ForumThread::popular()->take($limit)->get();
+   	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ForumCategory  $forumCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ForumCategory $forumCategory)
-    {
-        //
-    }
+   	public function mine()
+   	{
+   		return request()->user()->forumThreads;
+   		// return ForumThread::where('user_id', request()->user()->id)->get();
+   	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ForumCategory  $forumCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ForumCategory $forumCategory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ForumCategory  $forumCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ForumCategory $forumCategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ForumCategory  $forumCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ForumCategory $forumCategory)
-    {
-        //
-    }
+   	public function index()
+   	{
+   		return ForumThread::all();
+   	}
 }

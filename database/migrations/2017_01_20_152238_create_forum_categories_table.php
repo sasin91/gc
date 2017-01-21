@@ -16,6 +16,8 @@ class CreateForumCategoriesTable extends Migration
         Schema::create('forum_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id')->references('id')->on('teams');
 
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ class CreateForumCategoriesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('forum_categories');
     }
 }

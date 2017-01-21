@@ -86,4 +86,9 @@ class User extends SparkUser
     {
         return $this->hasMany(ChatParticipant::class);
     }
+
+    public function forumPosts() 
+    {
+        return $this->hasMany(ForumPost::class, 'author_id');
+    }
 }

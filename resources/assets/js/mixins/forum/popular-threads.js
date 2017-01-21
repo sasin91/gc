@@ -1,7 +1,7 @@
 module.exports = {
 	data() {
 		return {
-			latestThreads: [],
+			popularThreads: [],
 		}
 	},
 
@@ -11,9 +11,9 @@ module.exports = {
 
 	methods: {
 		getCategories() {
-			this.$http.get('/api/forum/threads/latest')
+			this.$http.get('/api/forum/threads/popular')
 				.then(response => {
-					this.latestThreads = response.data;
+					this.popularThreads = response.data;
 				});
 		},
 	}
