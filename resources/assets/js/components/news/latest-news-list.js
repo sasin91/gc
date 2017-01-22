@@ -1,6 +1,6 @@
 Vue.component('latest-news-list', {
 
-    mixins: [require('../mixins/lists-news')],
+    mixins: [require('../../mixins/lists-news')],
 
     methods: {
     	getNews() {

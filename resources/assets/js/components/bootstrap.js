@@ -13,7 +13,10 @@ require('./../spark-components/bootstrap');
 
 require('./home');
 
-require('./news-list');
-require('./latest-news-list');
-require('./news-articles-list');
-require('./show-news-article');
+require('./news/news-list');
+require('./news/latest-news-list');
+require('./news/news-articles-list');
+require('./news/show-news-article');
+
+require('./forum');
+require('./forum/forum-category');

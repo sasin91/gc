@@ -16,6 +16,8 @@ class CreateForumCategoriesTable extends Migration
         Schema::create('forum_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug')->nullable();
+            $table->string('icon')->default('fa fa-fw fa-btn fa-cicle-o');
             $table->unsignedInteger('team_id')->nullable();
             $table->foreign('team_id')->references('id')->on('teams');
 

@@ -31,3 +31,9 @@ Route::group(['prefix' => 'news'], function() {
     	]);
     });
 });
+
+Route::group(['prefix' => 'forum'], function() {
+    Route::get('/', function () {
+        return view('forum');
+    });
+});

@@ -169,14 +169,15 @@ $factory->define(App\ForumThread::class, function ($faker) {
         'forum_category_id' =>  function () {
             return factory(App\ForumCategory::class)->create()->id;
         },
-        'owner_id'  =>  function () {
+        'author_id'  =>  function () {
             return factory(App\User::class)->create()->id;
         },
 
         'title' =>  $faker->title,
         'description'   =>  $faker->bs,
         'pinned'    =>  false,
-        'locked'    =>  false
+        'locked'    =>  false,
+        'popular'   =>  false,
     ];
 });
 
@@ -189,6 +190,12 @@ $factory->state(App\ForumThread::class, 'pinned', function () {
 $factory->state(App\ForumThread::class, 'locked', function () {
     return [
         'locked'    =>  true
+    ];
+});
+
+$factory->state(App\ForumThread::class, 'popular', function () {
+    return [
+        'popular'    =>  true
     ];
 });
 

@@ -6,10 +6,6 @@ module.exports = {
 		}
 	},
 
-	mounted() {
-		this.getCategories();
-	},
-
 	methods: {
 		getCategories() {
 			this.$http.get('/api/forum/categories')
@@ -20,6 +16,10 @@ module.exports = {
 
 		selectCategory(category) {
 			this.selectedCategory = category;
+		},
+
+		categoryLink(category) {
+			return "#"+category.name;
 		}
 	}
 };

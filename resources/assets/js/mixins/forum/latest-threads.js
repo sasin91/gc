@@ -5,12 +5,8 @@ module.exports = {
 		}
 	},
 
-	mounted() {
-		this.getCategories();
-	},
-
 	methods: {
-		getCategories() {
+		getLatestThreads() {
 			this.$http.get('/api/forum/threads/latest')
 				.then(response => {
 					this.latestThreads = response.data;

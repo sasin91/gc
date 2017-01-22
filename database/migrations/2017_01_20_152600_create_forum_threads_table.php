@@ -30,6 +30,7 @@ class CreateForumThreadsTable extends Migration
                   ->onUpdate('cascade');
 
             $table->string('title');
+            $table->string('slug')->nullable();
             $table->string('description');
             $table->boolean('pinned');
             $table->boolean('locked');

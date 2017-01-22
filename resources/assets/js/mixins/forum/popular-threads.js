@@ -5,12 +5,8 @@ module.exports = {
 		}
 	},
 
-	mounted() {
-		this.getCategories();
-	},
-
 	methods: {
-		getCategories() {
+		getPopularThreads() {
 			this.$http.get('/api/forum/threads/popular')
 				.then(response => {
 					this.popularThreads = response.data;

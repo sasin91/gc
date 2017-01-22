@@ -18,13 +18,14 @@
         <div class="collapse navbar-collapse" id="spark-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;
+                @includeIf('spark::nav.shared-left')
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/login" class="navbar-link">Login</a></li>
                 <li><a href="/register" class="navbar-link">Register</a></li>
+                @includeIf('spark::nav.shared-right')
             </ul>
         </div>
     </div>

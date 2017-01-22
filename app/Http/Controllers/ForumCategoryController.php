@@ -20,7 +20,9 @@ class ForumCategoryController extends Controller
      */
     public function index()
     {
-        return ForumCategory::withTeam(request()->user()->currentTeam())->get();
+        return request()->user()
+        ? ForumCategory::withTeam(request()->user()->currentTeam())->get()
+        : ForumCategory::all();
     }
 
     /**
