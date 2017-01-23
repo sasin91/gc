@@ -24,7 +24,12 @@ class UpdateServerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          =>  'string',
+            'ip'            =>  'ip',
+            'game_type'     =>  'string',
+            'map'           =>  'string',
+            'player_limit'  =>  'integer',
+            'MNP'           =>  'string'
         ];
     }
 }

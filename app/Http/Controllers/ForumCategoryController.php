@@ -6,6 +6,9 @@ use App\ForumCategory;
 use App\Http\Requests\Forum\StoreForumCategoryRequest;
 use Illuminate\Http\Request;
 
+/**
+ * @resource ForumCategories
+ */
 class ForumCategoryController extends Controller
 {
     public function __construct()

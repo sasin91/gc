@@ -24,7 +24,12 @@ class StoreServerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          =>  'string|required',
+            'ip'            =>  'ip|required',
+            'game_type'     =>  'string',
+            'map'           =>  'string',
+            'player_limit'  =>  'integer',
+            'MNP'           =>  'string'
         ];
     }
 }

@@ -9,6 +9,9 @@ use App\Repositories\ServerRepositoryContract;
 use App\Server;
 use Illuminate\Http\Request;
 
+/**
+ * @resource Servers
+ */
 class ServersController extends Controller
 {
     /**
@@ -24,8 +27,8 @@ class ServersController extends Controller
      */
     public function __construct(ServerRepositoryContract $repository)
     {
-        $this->middleware(['auth:api', 'dev'])
-             ->only(['store', 'update', 'destroy']);
+        $this->middleware('dev')->only(['store', 'update', 'destroy']);
+        $this->middleware('auth:api')->except(['index', 'show']);
 
         $this->servers = $repository;
     }

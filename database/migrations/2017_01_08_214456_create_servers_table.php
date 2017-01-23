@@ -16,7 +16,7 @@ class CreateServersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('ip');
-            $table->string('gameType');
+            $table->string('game_type');
             $table->string('map');
             $table->unsignedInteger('player_limit');
             $table->unsignedInteger('players');

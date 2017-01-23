@@ -6,6 +6,9 @@ use App\News;
 use App\Http\Requests\{StoreNewsRequest, UpdateNewsRequest};
 use Illuminate\Http\Request;
 
+/**
+ * @resource News
+ */
 class NewsController extends Controller
 {
     public function __construct()

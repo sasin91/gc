@@ -8,6 +8,9 @@ use App\News;
 use App\NewsArticle;
 use Illuminate\Http\Request;
 
+/**
+ * @resource NewsArticles
+ */
 class NewsArticlesController extends Controller
 {
     public function __construct()

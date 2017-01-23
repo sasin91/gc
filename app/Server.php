@@ -11,7 +11,7 @@ class Server extends Model
 		'name',
 		'ip',
 		'map',
-		'gameType',
+		'game_type',
 		'player_limit',
 		'players',
 		'MNP'

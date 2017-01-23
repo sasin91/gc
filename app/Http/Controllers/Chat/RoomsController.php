@@ -11,6 +11,9 @@ use App\Repositories\ChatroomRepositoryContract;
 use App\Transformers\ChatRoomTransformer;
 use Illuminate\Http\Request;
 
+/**
+ * @resource ChatRooms
+ */
 class RoomsController extends Controller
 {
     /**

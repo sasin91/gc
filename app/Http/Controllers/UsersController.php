@@ -6,11 +6,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper;
 
+/**
+ * @resource Users
+ */
 class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(VerifyUserIsDeveloper::class)->only(['friendsList', 'notifications', 'messages']);
+        $this->middleware('dev')->only(['friendsList', 'notifications', 'messages']);
     }
 
     public function onlineList()

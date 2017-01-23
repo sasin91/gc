@@ -9,6 +9,9 @@ use App\Http\Requests\Forum\StoreForumThreadRequest;
 use App\Http\Requests\Forum\UpdateForumThreadRequest;
 use Illuminate\Http\Request;
 
+/**
+ * @resource ForumThreads
+ */
 class ForumThreadsController extends Controller
 {
     /**

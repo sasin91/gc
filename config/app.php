@@ -173,7 +173,6 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
         Laravel\Spark\Providers\SparkServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
-        //
 
         /*
          * Application Service Providers...

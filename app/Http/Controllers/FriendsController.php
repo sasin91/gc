@@ -10,6 +10,9 @@ use Hootlex\Friendships\Models\Friendship;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 
+/**
+ * @resource Friends
+ */
 class FriendsController extends Controller
 {
     /**

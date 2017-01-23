@@ -9,6 +9,9 @@ use App\Transformers\ChatMessageTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @resource ChatMessages
+ */
 class MessagesController extends Controller
 {
     /**
@@ -19,16 +22,6 @@ class MessagesController extends Controller
     public function index(ChatRoom $room)
     {
         return $room->messages;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -62,17 +55,6 @@ class MessagesController extends Controller
     public function show(ChatMessage $chatMessage)
     {
         return (new ChatMessageTransformer)->transform($chatMessage);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ChatMessage  $chatMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ChatMessage $chatMessage)
-    {
-        //
     }
 
     /**

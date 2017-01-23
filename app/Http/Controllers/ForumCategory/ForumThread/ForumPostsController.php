@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Forum\UpdateForumPostRequest;
 use Illuminate\Http\Request;
 
+/**
+ * @resource ForumPosts
+ */
 class ForumPostsController extends Controller
 {
     /**

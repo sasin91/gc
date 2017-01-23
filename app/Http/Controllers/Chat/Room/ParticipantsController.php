@@ -7,6 +7,9 @@ use app\Transformers\ChatParticipantTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @resource ChatParticipants
+ */
 class ParticipantsController extends Controller
 {
     /**
@@ -15,16 +18,6 @@ class ParticipantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -49,17 +42,6 @@ class ParticipantsController extends Controller
     public function show(ChatParticipant $chatParticipant)
     {
         return (new ChatParticipantTransformer)->transform($chatParticipant);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ChatParticipant  $chatParticipant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ChatParticipant $chatParticipant)
-    {
-        //
     }
 
     /**
