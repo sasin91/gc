@@ -20,7 +20,7 @@ module.exports = {
 
 		canAuthor(article) {
 			return this.currentTeam && this.currentTeam.name === 'staff'
-            || this.user.id === article.author.id;
+            || this.user && this.user.id === article.author.id;
 		},
 
 		editArticle(article) {
