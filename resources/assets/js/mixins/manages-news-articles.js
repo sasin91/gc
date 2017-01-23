@@ -19,8 +19,8 @@ module.exports = {
 	methods: {
 
 		canAuthor(article) {
-			return this.currentTeam.name === 'staff' || 
-	               this.user.id === article.author.id;
+			return this.currentTeam && this.currentTeam.name === 'staff'
+            || this.user.id === article.author.id;
 		},
 
 		editArticle(article) {
