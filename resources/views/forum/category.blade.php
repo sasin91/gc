@@ -17,7 +17,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="thread in threads" @click="redirectToThread(thread)" class="clickable">
+					<tr v-for="thread in threads"
+						@click="redirectToThread(thread)"
+						class="clickable"
+					>
 						<td>
 							@{{ thread.author.name }}
 						</td>

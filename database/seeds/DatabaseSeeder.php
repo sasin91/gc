@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     	$this->call(SparkDeveloperSeeder::class);
     	$this->call(TeamsTableSeeder::class);
         $this->call(NewsSeeder::class);
+        $this->call(ForumSeeder::class);
     }
 }

@@ -19,7 +19,7 @@ module.exports = {
 		},
 
 		categoryLink(category) {
-			return "#"+category.name;
+			return "#"+category.slug;
 		}
 	}
 };

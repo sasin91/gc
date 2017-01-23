@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumCategory extends Model
 {
+	use Sluggable;
+
 	protected $fillable = [
 		'title', 'icon'
 	];

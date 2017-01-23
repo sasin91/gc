@@ -1,9 +1,5 @@
 @extends('spark::layouts.app')
 
-@section('scripts')
-    //
-@endsection
-
 @section('content')
 <forum :user="user" :teams="teams" inline-template>
     <div class="spark-screen container">
@@ -16,21 +12,32 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="forum-tabs">
-                            <ul class="nav forum-stacked-tabs" role="tablist" v-for="category in categories">
-                                <li role="presentation">
-                                    <a :href="categoryLink(category)" :aria-controls="category.title" role="tab" data-toggle="tab">
-                                        <i :class="category.icon"></i>@{{ category.title }}
+                        <div class="forum-categories-tabs">
+                            <ul class="nav forum-stacked-tabs" role="tablist">
+                                <li role="presentation" v-for="category in categories">
+                                    <a :href="categoryLink(category)" 
+                                       :aria-controls="category.title"
+                                       role="tab"
+                                       data-toggle="tab"
+                                    >
+                                        <i :class="category.icon"></i>
+                                        @{{ category.title }}
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- Tab Panels -->
                 <div class="col-md-8">
-                    <div class="tab-content" v-for="category in categories">
-                        @include('forum.category')
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                             class="tab-pane"
+                             :id="category.slug"
+                             v-for="category in categories"
+                        >
+                            @include('forum.category')
                     </div>
                 </div>
             </div>

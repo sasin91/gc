@@ -170,14 +170,15 @@ return [
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Sasin91\LaravelRepository\RepositoryServiceProvider::class,
         Laravel\Dusk\DuskServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
+        Laravel\Spark\Providers\SparkServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         //
 
         /*
          * Application Service Providers...
          */
-        Laravel\Spark\Providers\SparkServiceProvider::class,
         App\Providers\SparkServiceProvider::class,
-        Laravel\Cashier\CashierServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
