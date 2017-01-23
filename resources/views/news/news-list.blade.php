@@ -34,10 +34,10 @@
                                 <td>@{{ post.title }}</td>
                                 <td>@{{ post.synopsis }}</td>
                                 <td>@{{ post.moderator.name }}</td>
-                                <td v-if="post.moderator.id === user.id"
+                                <td v-if="user && post.moderator.id === user.id"
                                     @click="editNews(post)" 
                                 ><i class="fa fa-edit"></i></td>
-                                <td v-if="post.moderator.id === user.id"
+                                <td v-if="user && post.moderator.id === user.id"
                                     @click="deleteNews(post)"
                                 ><i class="fa fa-trash"></i></td>
                             </tr>
