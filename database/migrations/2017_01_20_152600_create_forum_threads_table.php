@@ -16,10 +16,10 @@ class CreateForumThreadsTable extends Migration
         Schema::create('forum_threads', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('forum_category_id');
-            $table->foreign('forum_category_id')
+            $table->unsignedInteger('forum_id');
+            $table->foreign('forum_id')
                   ->references('id')
-                  ->on('forum_categories')
+                  ->on('forums')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
 

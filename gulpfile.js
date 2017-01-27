@@ -17,7 +17,6 @@ require('laravel-elixir-vue-2');
 elixir(function(mix) {
     mix.less('app.less')
         .less('lity.less')
-        .version(['css/app.css', 'js/app.js'])
         .webpack('app.js', null, null, {
             resolve: {
                 modules: [
@@ -28,5 +27,6 @@ elixir(function(mix) {
         })
         .copy('resources/assets/js/lity.js', 'public/js/lity.js')
         .copy('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/sweetalert.min.js')
-        .copy('node_modules/sweetalert/dist/sweetalert.css', 'public/css/sweetalert.css');
+        .copy('node_modules/sweetalert/dist/sweetalert.css', 'public/css/sweetalert.css')
+        .version(['css/app.css', 'js/app.js']);
 });

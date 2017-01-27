@@ -48,7 +48,7 @@ class ChatListingTest extends TestCase
                  'user_id'      =>  null,
                  'created_at'   =>  $teamRoom->created_at->toDateTimeString(),
                  'updated_at'   =>  $teamRoom->updated_at->toDateTimeString(),
-                 'participants' =>  $teamRoom->participants->jsonSerialize(),
+                 'users'        =>  $teamRoom->users->jsonSerialize(),
                  'team'         =>  [
                      'id'                   =>  $this->user()->currentTeam()->id,
                      'owner_id'             =>  $this->user()->currentTeam()->owner_id,
@@ -72,16 +72,16 @@ class ChatListingTest extends TestCase
 
         $room = factory(ChatRoom::class)->states(['public'])->create([
             'topic' => 'Latest flashy trends.'
-        ])->addParticipant($this->user());
+        ]);
+
+        $room->users()->attach($this->user());
 
         $this->getJson("/api/chat/rooms/{$room->id}")
              ->assertStatus(200)
-             ->assertJson([
+             ->assertJsonContains([
                  'topic' => 'Latest flashy trends.',
                  'messages' => [],
-                 'participants' => [
-                     'name' => $this->user()->name
-                 ]
+                 'name' => $this->user()->name
              ]);
     }
 }

@@ -119,7 +119,7 @@ class ChatroomRepository implements ChatroomRepositoryContract
 
     	return ChatRoom::forTeam($this->team())
                ->get()
-    		   ->load(['participants', 'team'])
+    		   ->load(['users', 'team'])
     		   ->merge($this->onlyPublic());
     }
 
@@ -155,7 +155,7 @@ class ChatroomRepository implements ChatroomRepositoryContract
     {
     	return ChatRoom::onlyPublic()
     					->get()
-    					->load('participants');
+    					->load('users');
     }
 
     public function onlyPrivate()
@@ -163,6 +163,6 @@ class ChatroomRepository implements ChatroomRepositoryContract
     	return ChatRoom::forTeams(
     		$this->user()->teams
     	)->get()
-    	 ->load(['participants', 'team']);
+    	 ->load(['users', 'team']);
     }
 }

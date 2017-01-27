@@ -1,19 +1,15 @@
-<forum-category :category="category" inline-template>
+<selected-forum :forum="forum" inline-template>
 	<div class="panel panel-default panel-flush">
 		<!-- Default panel contents -->
-		<div class="panel-heading">@{{ category.title }}</div>
+		<div class="panel-heading">@{{ forum.title }}</div>
 		<div class="panel-body">
 			<!-- Table -->
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<td>Author</td>
-					</tr>
-					<tr>
+						<th>Author</th>
 						<th>Title</th>
-					</tr>
-					<tr>
-						<td>Description</td>
+						<th>Description</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -35,4 +31,4 @@
 			</table>
 		</div>	
 	</div>
-</forum-category>
+</forum-forum>

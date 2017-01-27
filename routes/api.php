@@ -29,26 +29,27 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->resource('friends', 'FriendsController');
 
     $route->group(['prefix' => 'chat', 'namespace' => 'Chat'], function (Router $route) {
-        $route->resource('rooms', 'RoomsController');
-        $route->resource('rooms.messages', 'Room\MessagesController');
-        $route->resource('rooms.participants', 'Room\ParticipantsController');
+        $route->resource('rooms', 'ChatRoomController');
+        $route->resource('rooms.messages', 'ChatRoom\ChatMessageController');
     });
 });
 
-Route::group(['prefix' => 'forum', 'as' => 'forum.'], function() {
-    Route::resource('categories', 'ForumCategoryController', ['except' => ['create', 'edit']]);
-    Route::group(['prefix' => 'threads', 'as' => 'threads.'], function() {
+Route::resource('forum', 'ForumController', ['except' => ['create', 'edit']]);
+Route::group(['as' => 'forum.'], function() {
+    Route::group(['prefix' => 'forum/threads', 'as' => 'threads.'], function() {
         Route::get('/', 'ForumThreadController@index')->name('index');
         Route::get('mine', 'ForumThreadController@mine')->name('mine');
         Route::get('latest', 'ForumThreadController@latest')->name('latest');
         Route::get('popular', 'ForumThreadController@popular')->name('popular');
     });
-    Route::resource('categories.threads', 'ForumCategory\ForumThreadsController', ['except' => ['create', 'edit']]);
-    Route::group(['prefix' => 'posts', 'as' => 'posts.'], function() {
+    Route::resource('forum.threads', 'Forum\ForumThreadsController', ['except' => ['create', 'edit']]);
+
+    Route::group(['prefix' => 'forum/posts', 'as' => 'posts.'], function() {
         Route::get('/', 'ForumPostController@index')->name('index');
         Route::get('mine', 'ForumPostController@mine')->name('mine');
     });
-    Route::resource('categories.threads.posts', 'ForumCategory\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
+
+    Route::resource('forum.threads.posts', 'Forum\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
 });
 
 Route::post('servers/join/{server}', 'ServersController@join');

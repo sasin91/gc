@@ -29,6 +29,19 @@ abstract class TestCase extends \Illuminate\Foundation\Testing\TestCase
             $this->setUpAuthentication();
         }
     }
+
+    /**
+     * Create the test response instance from the given response.
+     *
+     * @overrides \Illuminate\Foundation\Testing\Concerns\MakesHttpRequests
+     * @param  \Illuminate\Http\Response  $response
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
+    protected function createTestResponse($response)
+    {
+        return TestResponse::fromBaseResponse($response);
+    }
+
     protected function disableExceptionHandling()
     {
         $this->app->instance(ExceptionHandler::class, new class extends Handler {

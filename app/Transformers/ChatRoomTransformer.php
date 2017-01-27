@@ -13,19 +13,7 @@ class ChatRoomTransformer
         return [
             'topic'         =>  $room->topic,
             'messages'      =>  $room->messages,
-            'participants'  =>  $this->transformParticipants($room)
+            'users'         =>  $room->users
         ];
-    }
-
-    protected function transformParticipants(ChatRoom $room)
-    {
-        return $room->participants->flatMap(function (ChatParticipant $participant) {
-            return $this->transformParticipant($participant);
-        })->toArray();
-    }
-
-    protected function transformParticipant(ChatParticipant $participant)
-    {
-        return (new ChatParticipantTransformer)->transform($participant);
     }
 }

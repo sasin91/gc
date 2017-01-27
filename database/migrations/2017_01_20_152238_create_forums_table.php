@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForumCategoriesTable extends Migration
+class CreateForumsTable extends Migration
 { 
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateForumCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_categories', function (Blueprint $table) {
+        Schema::create('forums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('slug')->nullable();

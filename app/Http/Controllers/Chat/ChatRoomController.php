@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Chat;
 
 use App\ChatRoom;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreChatRoomRequest;
-use App\Http\Requests\UpdateChatRoomRequest;
+use App\Http\Requests\Chat\StoreChatRoomRequest;
+use App\Http\Requests\Chat\UpdateChatRoomRequest;
 use App\Repositories\ChatroomRepository;
 use App\Repositories\ChatroomRepositoryContract;
 use App\Transformers\ChatRoomTransformer;
@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 /**
  * @resource ChatRooms
  */
-class RoomsController extends Controller
+class ChatRoomController extends Controller
 {
     /**
      * ChatRooms Repository

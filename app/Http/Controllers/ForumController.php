@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\ForumCategory;
-use App\Http\Requests\Forum\StoreForumCategoryRequest;
+use App\Forum;
+use App\Http\Requests\Forum\StoreForumRequest;
 use Illuminate\Http\Request;
 
 /**
- * @resource ForumCategories
+ * @resource Forums
  */
-class ForumCategoryController extends Controller
+class ForumController extends Controller
 {
     public function __construct()
     {
@@ -24,8 +24,8 @@ class ForumCategoryController extends Controller
     public function index()
     {
         return request()->user()
-        ? ForumCategory::withTeam(request()->user()->currentTeam())->get()
-        : ForumCategory::all();
+        ? Forum::withTeam(request()->user()->currentTeam())->get()
+        : Forum::all();
     }
 
     /**
@@ -34,42 +34,42 @@ class ForumCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreForumCategoryRequest $request)
+    public function store(StoreForumRequest $request)
     {
-        ForumCategory::create($request->all());
+        Forum::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ForumCategory  $forumCategory
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function show(ForumCategory $forumCategory)
+    public function show(Forum $forum)
     {
-        return $forumCategory->load(['threads', 'team']);
+        return $forum->load(['threads', 'team']);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ForumCategory  $forumCategory
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateForumCategoryRequest $request, ForumCategory $forumCategory)
+    public function update(UpdateForumRequest $request, Forum $forum)
     {
-        $forumCategory->update($request->all());
+        $forum->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ForumCategory  $forumCategory
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ForumCategory $forumCategory)
+    public function destroy(Forum $forum)
     {
-        $forumCategory->delete();
+        $forum->delete();
     }
 }

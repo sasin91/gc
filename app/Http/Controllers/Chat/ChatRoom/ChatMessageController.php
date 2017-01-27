@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Chat\Room;
+namespace App\Http\Controllers\Chat\ChatRoom;
 
 use App\ChatMessage;
 use App\ChatParticipant;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 /**
  * @resource ChatMessages
  */
-class MessagesController extends Controller
+class ChatMessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,18 +32,20 @@ class MessagesController extends Controller
      */
     public function store(Request $request, ChatRoom $room)
     {
-        if (! $room->isPublic ) {
-            abort_unless($request->user()->onTeam($room->team), 403, "User must be a member of the Team owning a private Room.");
-        }
-        if (ChatParticipant::where('chat_Room_id', $room->id)
-                           ->where('user_id', $request->user()->id)
-                           ->get()
-                           ->isEmpty()
-        ) {
-            $room->participateAs($request->user());
+        abort_unless($room->isPublic() || $request->user()->onTeam($room->team),
+            403,
+            "User must be a member of the Team owning a private Room."
+        );
+        
+        if (! $room->users->contains($request->user()) ) {
+            $room->users()->attach($request->user());
         }
 
-        $room->messages()->save(new ChatMessage($request->all()));
+        $room->messages()->save(
+            new ChatMessage(
+                array_merge(['user_id' => $request->user()->id], $request->all())
+            )
+        );
     }
 
     /**

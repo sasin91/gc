@@ -15,7 +15,6 @@ class ForumPostController extends Controller
     public function mine()
     {
         return request()->user()->forumPosts;
-        //return ForumPost::where('author_id', request()->user()->id)->get();
     }
 
     public function index()

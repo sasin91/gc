@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Server;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateFriendRequest extends FormRequest
+class UpdateServerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class UpdateFriendRequest extends FormRequest
     public function rules()
     {
         return [
-            'block'     =>  'sometimes|boolean',
-            'unblock'   =>  'sometimes|boolean',
-            'accept'    =>  'sometimes|boolean',
-            'deny'      =>  'sometimes|boolean'
+            'name'          =>  'string',
+            'ip'            =>  'ip',
+            'game_type'     =>  'string',
+            'map'           =>  'string',
+            'player_limit'  =>  'integer',
+            'MNP'           =>  'string'
         ];
     }
 }

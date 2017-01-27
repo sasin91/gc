@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ChatMessage extends Model
 {
     protected $fillable = [
-        'chat_room_id',
-        'chat_participant_id',
         'title',
         'body'
     ];
@@ -18,8 +16,8 @@ class ChatMessage extends Model
         $this->belongsTo(ChatRoom::class);
     }
 
-    public function participant()
+    public function user()
     {
-        return $this->belongsTo(ChatParticipant::class);
+        return $this->belongsTo(User::class);
     }
 }

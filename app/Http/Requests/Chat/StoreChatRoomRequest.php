@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Chat;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreServerRequest extends FormRequest
+class StoreChatRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +25,8 @@ class StoreServerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          =>  'string|required',
-            'ip'            =>  'ip|required',
-            'game_type'     =>  'string',
-            'map'           =>  'string',
-            'player_limit'  =>  'integer',
-            'MNP'           =>  'string'
+            'topic'     =>  'required|string',
+            'team_id'   =>  ['integer', Rule::exists('teams', 'id')]  
         ];
     }
 }

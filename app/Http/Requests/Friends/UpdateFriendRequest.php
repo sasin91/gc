@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Friends;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateChatRoomRequest extends FormRequest
+class UpdateFriendRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class UpdateChatRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'block'     =>  'sometimes|boolean',
+            'unblock'   =>  'sometimes|boolean',
+            'accept'    =>  'sometimes|boolean',
+            'deny'      =>  'sometimes|boolean'
         ];
     }
 }

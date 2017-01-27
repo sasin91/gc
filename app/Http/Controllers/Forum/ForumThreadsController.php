@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ForumCategory;
+namespace App\Http\Controllers\Forum;
 
-use App\ForumCategory;
+use App\Forum;
 use App\ForumThread;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Forum\StoreForumThreadRequest;
@@ -19,9 +19,9 @@ class ForumThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ForumCategory $forumCategory)
+    public function index(Forum $forum)
     {
-        return $forumCategory->threads;
+        return $forum->threads;
     }
 
     /**
@@ -30,9 +30,9 @@ class ForumThreadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ForumCategory $forumCategory, StoreForumThreadRequest $request)
+    public function store(Forum $forum, StoreForumThreadRequest $request)
     {
-        $forumCategory->threads()->save(new ForumThread($request->all()));
+        $forum->threads()->save(new ForumThread($request->all()));
     }
 
     /**
@@ -41,9 +41,9 @@ class ForumThreadsController extends Controller
      * @param  \App\ForumThread  $forumThread
      * @return \Illuminate\Http\Response
      */
-    public function show($forumCategory_id, ForumThread $forumThread)
+    public function show($forum_id, ForumThread $forumThread)
     {
-        return $forumThread->load(['category', 'author', 'posts']);
+        return $forumThread->load(['forum', 'author', 'posts']);
     }
 
     /**
@@ -65,7 +65,7 @@ class ForumThreadsController extends Controller
      * @param  \App\ForumThread  $forumThread
      * @return \Illuminate\Http\Response
      */
-    public function destroy($forumCategory_id, ForumThread $forumThread)
+    public function destroy($forum_id, ForumThread $forumThread)
     {
         $forumThread->delete();
     }

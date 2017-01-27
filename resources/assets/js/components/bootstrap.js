@@ -19,4 +19,5 @@ require('./news/news-articles-list');
 require('./news/show-news-article');
 
 require('./forum');
-require('./forum/forum-category');
+require('./forum/selected-forum');
+require('./forum/forum-thread');

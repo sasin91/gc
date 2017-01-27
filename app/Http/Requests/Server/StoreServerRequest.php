@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Server;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreChatRoomRequest extends FormRequest
+class StoreServerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,12 @@ class StoreChatRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          =>  'string|required',
+            'ip'            =>  'ip|required',
+            'game_type'     =>  'string',
+            'map'           =>  'string',
+            'player_limit'  =>  'integer',
+            'MNP'           =>  'string'
         ];
     }
 }

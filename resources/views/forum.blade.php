@@ -12,16 +12,16 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="forum-categories-tabs">
+                        <div class="forum-tabs">
                             <ul class="nav forum-stacked-tabs" role="tablist">
-                                <li role="presentation" v-for="category in categories">
-                                    <a :href="categoryLink(category)" 
-                                       :aria-controls="category.title"
+                                <li role="presentation" v-for="forum in forums">
+                                    <a :href="forumLink(forum)" 
+                                       :aria-controls="forum.title"
                                        role="tab"
                                        data-toggle="tab"
                                     >
-                                        <i :class="category.icon"></i>
-                                        @{{ category.title }}
+                                        <i :class="forum.icon"></i>
+                                        @{{ forum.title }}
                                     </a>
                                 </li>
                             </ul>
@@ -34,10 +34,10 @@
                     <div class="tab-content">
                         <div role="tabpanel" 
                              class="tab-pane"
-                             :id="category.slug"
-                             v-for="category in categories"
+                             :id="forum.slug"
+                             v-for="forum in forums"
                         >
-                            @include('forum.category')
+                            @include('forum.selected-forum')
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ Vue.component('forum', {
 		require('../spark/mixins/tab-state'),
 		require('../mixins/forum/popular-threads'),
 		require('../mixins/forum/latest-threads'),
-		require('../mixins/forum/categories'),
+		require('../mixins/forum/forums'),
 		require('../mixins/forum/selects-thread')
 	],
 
@@ -13,9 +13,9 @@ Vue.component('forum', {
      * Prepare the component.
      */
     mounted() {
-    	this.getCategories();
+    	this.getForums();
     	this.getLatestThreads();
     	this.getPopularThreads();
-        this.usePushStateForTabs('.forum-categories-tabs');
+        this.usePushStateForTabs('.forum-tabs');
     }
 });

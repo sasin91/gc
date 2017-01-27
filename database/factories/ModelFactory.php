@@ -90,23 +90,12 @@ $factory->define(App\Team::class, function (Faker\Generator $faker) {
 
 $factory->define(App\ChatMessage::class, function (Faker\Generator $faker) {
     return [
-        'chat_participant_id' =>  function () {
-             return factory(App\ChatParticipant::class)->create()->id;
+        'user_id' =>  function () {
+             return factory(App\User::class)->create()->id;
         } ,
 
         'title' =>  $faker->catchPhrase,
         'body'  =>  $faker->text
-    ];
-});
-
-$factory->define(App\ChatParticipant::class, function (Faker\Generator $faker) {
-    return [
-        'user_id' =>  function () {
-             return factory(App\User::class)->create()->id;
-        } ,
-        'chat_room_id' =>  function () {
-             return factory(App\ChatRoom::class)->create()->id;
-        } ,
     ];
 });
 
@@ -150,13 +139,13 @@ $factory->define(App\Tag::class, function ($faker) {
     ];
 });
 
-$factory->define(App\ForumCategory::class, function ($faker) {
+$factory->define(App\Forum::class, function ($faker) {
     return [
         'title' => $faker->title,
     ];
 });
 
-$factory->state(App\ForumCategory::class, 'forTeam', function ($faker) {
+$factory->state(App\Forum::class, 'forTeam', function ($faker) {
     return [
         'team_id'   =>  function () {
             return factory(App\Team::class)->create()->id;
@@ -166,8 +155,8 @@ $factory->state(App\ForumCategory::class, 'forTeam', function ($faker) {
 
 $factory->define(App\ForumThread::class, function ($faker) {
     return [
-        'forum_category_id' =>  function () {
-            return factory(App\ForumCategory::class)->create()->id;
+        'forum_id' =>  function () {
+            return factory(App\Forum::class)->create()->id;
         },
         'author_id'  =>  function () {
             return factory(App\User::class)->create()->id;

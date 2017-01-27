@@ -81,6 +81,16 @@ class ChatRoom extends Model
        return $query->whereIn('team_id', $ids);
     }
 
+    public function isPublic()
+    {
+        return (bool)$this->isPublic;
+    }
+
+    public function isPrivate()
+    {
+        return ! $this->isPublic();
+    }
+
     public function publish()
     {
         $this->update(['isPublic' => true]);
@@ -95,24 +105,6 @@ class ChatRoom extends Model
         return $this;
     }
 
-    public function addParticipant($participant)
-    {
-        if ($participant instanceof User) {
-            return $this->participateAs($participant);
-        }
-
-        if ($participant instanceof ChatParticipant) {
-            return $this->participants()->save($participant);
-        }
-
-        return null;
-    }
-
-    public function participateAs(User $user)
-    {
-        return $this->participants()->save(new ChatParticipant(['user_id' => $user->id]));
-    }
-
     public function team()
     {
         return $this->belongsTo(Spark::team());
@@ -123,9 +115,9 @@ class ChatRoom extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function participants()
+    public function users()
     {
-        return $this->hasMany(ChatParticipant::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function messages()

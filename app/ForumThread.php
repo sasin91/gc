@@ -22,6 +22,8 @@ class ForumThread extends Model
         'popular'   =>  'boolean'
     ];
 
+    protected $with = ['author'];
+
     public function scopePopular($query) 
     {
         return $query->where('popular', true);
@@ -32,9 +34,9 @@ class ForumThread extends Model
         return $query->where('popular', false);
     } 
 
-    public function category() 
+    public function forum() 
     {
-    	return $this->belongsTo(ForumCategory::class);
+    	return $this->belongsTo(Forum::class);
     }
 
     public function author() 

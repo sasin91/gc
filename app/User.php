@@ -82,14 +82,14 @@ class User extends SparkUser
         return $this->belongsToMany(Server::class);
     }
 
-    public function chatParticipants()
+    public function chatRooms()
     {
-        return $this->hasMany(ChatParticipant::class);
+        return $this->belongsToMany(ChatRoom::class);
     }
 
-    public function forumCategories() 
+    public function forums() 
     {
-        return $this->hasManyThrough(ForumCategory::class, Team::class);
+        return $this->hasManyThrough(Forum::class, Team::class);
     }
 
     public function forumThreads() 

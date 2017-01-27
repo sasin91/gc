@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFriendRequest;
-use App\Http\Requests\UpdateFriendRequest;
+use App\Http\Requests\Friends\StoreFriendRequest;
+use App\Http\Requests\Friends\UpdateFriendRequest;
 use App\Repositories\FriendsRepositoryContract as FriendsRepository;
 use App\User;
 use Hootlex\Friendships\Models\Friendship;

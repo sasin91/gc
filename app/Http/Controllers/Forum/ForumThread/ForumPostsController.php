@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ForumCategory\ForumThread;
+namespace App\Http\Controllers\Forum\ForumThread;
 
-use App\ForumCategory;
+use App\Forum;
 use App\ForumPost;
 use App\ForumThread;
 use App\Http\Controllers\Controller;
@@ -19,9 +19,9 @@ class ForumPostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($forumCategory_id, ForumThread $forumThread)
+    public function index(Forum $forum, ForumThread $thread)
     {
-        return $forumThread->posts;
+        return $thread->posts;
     }
 
     /**
@@ -30,7 +30,7 @@ class ForumPostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($forumCategory_id, ForumThread $forumThread, StoreForumPostRequest $request)
+    public function store($forum_id, ForumThread $forumThread, StoreForumPostRequest $request)
     {
         $forumThread->posts()->save(new ForumPost($request->all()));
     }
@@ -41,7 +41,7 @@ class ForumPostsController extends Controller
      * @param  \App\ForumPost  $forumPost
      * @return \Illuminate\Http\Response
      */
-    public function show($forumCategory_id, $forumThread_id, ForumPost $forumPost)
+    public function show($forum_id, $forumThread_id, ForumPost $forumPost)
     {
         return $forumPost->load(['thread', 'author', 'photos', 'tags']);
     }
@@ -54,7 +54,7 @@ class ForumPostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateForumPostRequest $request, 
-                           $forumCategory_id,
+                           $forum_id,
                            $forumThread_id,
                            ForumPost $forumPost
     ) {
