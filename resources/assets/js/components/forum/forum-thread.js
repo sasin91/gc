@@ -21,6 +21,12 @@ Vue.component('forum-thread', {
 		
 		redirectToPost(post) {
 			window.location = "/forum/"+this.forum_id+"/posts/"+post.id
+		},
+
+		renderMarkdown(content) {
+			var marked = require('marked');
+
+			return marked(content);
 		}
 	}
 });

@@ -135,7 +135,15 @@ $factory->define(App\Server::class, function ($faker) {
 
 $factory->define(App\Tag::class, function ($faker) {
     return [
-        'name'  =>  $faker->word
+        'name'  =>  $faker->word,
+        'label' =>  $faker->randomElement([
+            'label label-default',
+            'label label-primary',
+            'label label-success',
+            'label label-info',
+            'label label-warning',
+            'label label-danger'
+        ])
     ];
 });
 

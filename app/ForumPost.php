@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumPost extends Model
 {
+    protected $with = [
+        'author', 'tags', 'photos'
+    ];
+
     protected $fillable = [
     	'content'
     ];

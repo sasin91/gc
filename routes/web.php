@@ -42,6 +42,6 @@ Route::group(['prefix' => 'forum'], function() {
     });
 
     Route::get('{forum}/threads/{thread}', function($forum_id, App\ForumThread $thread) {
-        return view('forum.thread', ['thread' => $thread, 'forum_id' => $forum_id]);
+        return view('forum.forum-thread', ['thread' => $thread, 'forum_id' => $forum_id]);
     });
 });

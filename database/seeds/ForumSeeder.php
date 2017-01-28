@@ -15,6 +15,7 @@ class ForumSeeder extends Seeder
         ->times(5)->create()
         ->each(function ($post) {
             $post->photos()->save(factory(App\Photo::class)->make());
+            $post->tags()->saveMany(factory(App\Tag::class)->times(5)->make());
         });
     }
 }

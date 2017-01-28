@@ -15,10 +15,10 @@
     <!-- CSS -->
     <link href="/css/sweetalert.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="/css/lity.css"> -->
+    @stack('css')
 
     <!-- Scripts -->
-    @yield('scripts', '')
+    @stack('scripts')
 
     <!-- Global Spark Object -->
     <script>
