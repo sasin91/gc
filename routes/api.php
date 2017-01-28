@@ -42,15 +42,15 @@ Route::group(['as' => 'forum.'], function() {
         Route::get('latest', 'ForumThreadController@latest')->name('latest');
         Route::get('popular', 'ForumThreadController@popular')->name('popular');
     });
-    Route::resource('forum.threads', 'Forum\ForumThreadsController', ['except' => ['create', 'edit']]);
 
     Route::group(['prefix' => 'forum/posts', 'as' => 'posts.'], function() {
         Route::get('/', 'ForumPostController@index')->name('index');
         Route::get('mine', 'ForumPostController@mine')->name('mine');
     });
-
-    Route::resource('forum.threads.posts', 'Forum\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
 });
+
+Route::resource('forum.threads', 'Forum\ForumThreadsController', ['except' => ['create', 'edit']]);
+Route::resource('forum.threads.posts', 'Forum\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
 
 Route::post('servers/join/{server}', 'ServersController@join');
 Route::post('servers/leave/{server}', 'ServersController@leave');

@@ -1,5 +1,8 @@
 <?php
 
+use App\Forum;
+use App\ForumThread;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -41,7 +44,10 @@ Route::group(['prefix' => 'forum'], function() {
         //
     });
 
-    Route::get('{forum}/threads/{thread}', function($forum_id, App\ForumThread $thread) {
-        return view('forum.forum-thread', ['thread' => $thread, 'forum_id' => $forum_id]);
+    Route::get('{forum}/threads/{thread}', function($forum, $thread) {
+        return view('forum.forum-thread', [
+            'thread'   => ForumThread::whereSlug($thread)->firstOrFail(), 
+            'forum'    => Forum::whereSlug($forum)->firstOrFail()
+        ]);
     });
 });

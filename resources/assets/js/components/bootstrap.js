@@ -21,3 +21,4 @@ require('./news/show-news-article');
 require('./forum');
 require('./forum/selected-forum');
 require('./forum/forum-thread');
+require('./forum/forum-posts');

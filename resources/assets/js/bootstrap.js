@@ -43,3 +43,6 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'your-pusher-key'
 });
+
+import VueSimplemde from 'vue-simplemde'
+Vue.use(VueSimplemde);
