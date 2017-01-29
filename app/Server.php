@@ -22,6 +22,22 @@ class Server extends Model
 		'players'		=>	'integer'
 	];
 
+	/**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::saving(function ($server) {
+			if ($server->players > $server->player_limit) {
+				throw new \OutOfBoundsException("Player limit reached.", 422);
+			}
+		});
+	}
+
 	public function players()
 	{
 		return $this->belongsToMany(User::class);

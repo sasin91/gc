@@ -2,26 +2,30 @@
 
 namespace App\Events\Forum;
 
+use App\ForumThread;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class ForumThreadLostPopularity
+class ForumThreadLocked implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $thread;
 
     /**
      * Create a new event instance.
      *
+     * @param ForumThread $thread 
      * @return void
      */
-    public function __construct()
+    public function __construct(ForumThread $thread)
     {
-        //
+        $this->thread = $thread;
     }
 
     /**
@@ -31,6 +35,6 @@ class ForumThreadLostPopularity
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('forum-'.$this->thread->forum->id);
     }
 }

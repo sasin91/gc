@@ -10,7 +10,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.0.1",
         "algolia/algoliasearch-client-php": "^1.13",
         "hootlex/laravel-friendships": "^1.0",
         "laravel/cashier": "~7.0",
@@ -20,8 +20,6 @@
         "laravel/spark": "*@dev",
         "laravel/tinker": "^1.0@dev",
         "phpunit/phpunit": "^5.7",
-        "riari/laravel-forum": "^4.0",
-        "riari/laravel-forum-frontend": "^1.1",
         "sasin91/laravel-repository": "dev-master",
         "watson/rememberable": "^2.0"
     },

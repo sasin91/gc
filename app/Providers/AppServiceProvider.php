@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Observers\Server\PlayerLimitObserver;
-use App\Server;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Server::observe(PlayerLimitObserver::class);
+        //
     }
 
     /**

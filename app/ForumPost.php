@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\Forum\NewForumPost;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumPost extends Model
@@ -13,6 +14,18 @@ class ForumPost extends Model
     protected $fillable = [
     	'content'
     ];
+
+    /**
+     * The event map for the model.
+     *
+     * Allows for object-based events for native Eloquent events.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saved' =>  NewForumPost::class
+    ];
+
 
     public function thread() 
     {
