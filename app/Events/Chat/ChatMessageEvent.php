@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events\ChatRoom;
+namespace App\Events\Chat;
 
-use App\ChatRoom;
+use App\ChatMessage;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,20 +11,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatRoomUpdated implements ShouldBroadcast
+class ChatMessageEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $room;
+    public $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(ChatRoom $room)
+    public function __construct(ChatMessage $message)
     {
-        $this->room = $room;
+        $this->message = $message;
     }
 
     /**
@@ -34,10 +34,10 @@ class ChatRoomUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        if ($this->room->isPrivate()) {
-            return new PrivateChannel('team-chat-rooms-'.$this->room->team->id);
+        if ($this->message->room->isPrivate()) {
+            return new PrivateChannel('chat-room-'.$this->message->room->id);
         }
 
-        return new Channel('chat-rooms');
+        return new Channel('chat-room-'.$this->message->room->id);
     }
 }

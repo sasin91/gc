@@ -1,12 +1,6 @@
 # Consolidate Http/Requests in under respective folders
-# Consolidate Models into respective folders
+# Consolidate Models (?)
 
-# Refactor Forum
-## perhaps ForumCategory -> Forum
-
-# Refactor Chat
-## Consider removing ChatParticipant and just use User.
+# Model Events
 
 # Write Model policies and don't forget to register them in AuthServiceProvider
-
-# Blog events

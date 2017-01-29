@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Events\ChatRoom\{ChatRoomCreated, ChatRoomUpdated, ChatRoomDeleted};
+use App\Events\Chat\{ChatRoomCreated, ChatRoomUpdated, ChatRoomDeleted};
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

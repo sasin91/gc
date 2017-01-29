@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\ChatRoom;
+namespace App\Events\Chat;
 
 use App\ChatRoom;
 use Illuminate\Broadcasting\Channel;
@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatRoomCreated implements ShouldBroadcast
+abstract class ChatRoomEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,9 +35,9 @@ class ChatRoomCreated implements ShouldBroadcast
     public function broadcastOn()
     {
         if ($this->room->isPrivate()) {
-            return new PrivateChannel('team-chat-rooms-'.$this->room->team->id);
+            return new PrivateChannel('chat-room-'.$this->room->id);
         }
 
-        return new Channel('chat-rooms');
+        return new Channel('chat-room-'.$this->room->id);
     }
 }

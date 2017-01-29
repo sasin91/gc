@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\Chat\{ChatMessageCreated, ChatMessageUpdated, ChatMessageDeleted};
 use Illuminate\Database\Eloquent\Model;
 
 class ChatMessage extends Model
@@ -11,9 +12,23 @@ class ChatMessage extends Model
         'body'
     ];
 
-    public function thread()
+    /**
+    * The event map for the model.
+    *
+    * Allows for object-based events for native Eloquent events.
+    *
+    * @var array
+    */
+    protected $events = [
+        'created'   =>  ChatMessageCreated::class,
+        'updated'   =>  ChatMessageUpdated::class,
+        'deleting'  =>  ChatMessageDeleted::class
+    ];
+    
+
+    public function room()
     {
-        $this->belongsTo(ChatRoom::class);
+        return $this->belongsTo(ChatRoom::class, 'chat_room_id');
     }
 
     public function user()
