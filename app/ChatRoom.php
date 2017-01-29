@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Events\ChatRoom\ChatRoomCreated;
+use App\Events\ChatRoom\{ChatRoomCreated, ChatRoomUpdated, ChatRoomDeleted};
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -39,7 +39,9 @@ class ChatRoom extends Model
     * @var array
     */
     protected $events = [
-        'created'   =>  ChatRoomCreated::class
+        'created'   =>  ChatRoomCreated::class,
+        'updated'   =>  ChatRoomUpdated::class,
+        'deleting'  =>  ChatRoomDeleted::class
     ];
     
 
