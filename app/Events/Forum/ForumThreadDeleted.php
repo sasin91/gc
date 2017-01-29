@@ -1,33 +1,31 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Forum;
 
-use App\Server;
-use App\User;
+use App\ForumThread;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-abstract class PlayerEvent
+class ForumThreadDeleted implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $server;
-
-    public $player;
+    public $thread;
 
     /**
      * Create a new event instance.
      *
+     * @param ForumThread $thread 
      * @return void
      */
-    public function __construct(Server $server, User $player)
+    public function __construct(ForumThread $thread)
     {
-        $this->server = $server;
-        $this->player = $player;
+        $this->thread = $thread;
     }
 
     /**
@@ -37,6 +35,6 @@ abstract class PlayerEvent
      */
     public function broadcastOn()
     {
-        return new Channel('players');
+        return new Channel('forum');
     }
 }

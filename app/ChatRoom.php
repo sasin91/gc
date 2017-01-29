@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\ChatRoom\ChatRoomCreated;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,18 @@ class ChatRoom extends Model
     protected $casts = [
         'isPublic'  =>  'boolean'
     ];
+
+    /**
+    * The event map for the model.
+    *
+    * Allows for object-based events for native Eloquent events.
+    *
+    * @var array
+    */
+    protected $events = [
+        'created'   =>  ChatRoomCreated::class
+    ];
+    
 
     /**
      * Return only public Rooms.

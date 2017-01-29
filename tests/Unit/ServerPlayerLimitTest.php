@@ -1,11 +1,14 @@
 <?php
 
-namespace Tests;
+namespace Tests\Unit;
 
 use App\Repositories\ServerRepositoryContract;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tests\Authentication;
+use Tests\DatabaseSetup;
+use Tests\TestCase;
 
 /**
  * @group Server
@@ -14,15 +17,6 @@ class ServerPlayerLimitTest extends TestCase
 {
 	use DatabaseSetup, Authentication;
 
-	public function testHasAPlayerLimit()
-	{
-		$server = factory(\App\Server::class)->create(['player_limit' => 50]);
-
-		$this->getJson("/api/servers/{$server->id}")
-			 ->assertStatus(200)
-			 ->assertJson(['player_limit' => 50]);
-	}
-
 	public function testCanIncreasePlayerLimit()
 	{
 		// Seed the database records.
@@ -30,10 +24,8 @@ class ServerPlayerLimitTest extends TestCase
 
 		$server = factory(\App\Server::class)->create(['player_limit' => 50]);
 
-		$this->asDeveloper()->patchJson("/api/servers/{$server->id}", ['player_limit' => 100]);
-		$this->getJson("/api/servers/{$server->id}")
-			 ->assertStatus(200)
-			 ->assertJson(['player_limit' => 100]);		
+		$this->assertTrue($server->update(['player_limit' => 100]));
+		$this->assertEquals(100, $server->player_limit);
 	}
 
 	public function testCannotExceedPlayerLimit()

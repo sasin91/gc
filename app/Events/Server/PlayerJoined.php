@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Server;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,4 +9,4 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PlayerJoining extends PlayerEvent {}
+class PlayerJoined extends PlayerEvent {}

@@ -101,10 +101,6 @@ $factory->define(App\ChatMessage::class, function (Faker\Generator $faker) {
 
 $factory->define(App\ChatRoom::class, function (Faker\Generator $faker) {
     return [
-//        'team_id' =>  function () {
-//             return factory(App\Team::class)->create()->id;
-//        } ,
-
         'topic' =>  $faker->bs
     ];
 });
@@ -117,7 +113,10 @@ $factory->state(\App\ChatRoom::class, 'public', function ($faker) {
 
 $factory->state(\App\ChatRoom::class, 'private', function ($faker) {
    return [
-       'isPublic'   =>  false
+       'isPublic'   =>  false,
+       'team_id'    =>  function () {
+            return factory(App\Team::class)->create()->id;
+       }
    ];
 });
 

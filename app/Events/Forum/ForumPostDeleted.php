@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewForumPost
+class ForumPostDeleted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,8 +19,9 @@ class NewForumPost
 
     /**
      * Create a new event instance.
-     * 
-     * @param ForumPost $post
+     *
+     * @param ForumPost $post 
+     * @return void
      */
     public function __construct(ForumPost $post)
     {
@@ -34,6 +35,6 @@ class NewForumPost
      */
     public function broadcastOn()
     {
-        return new Channel('forum-thread-'.$this->post->thread->id);
+        return new Channel('forum');
     }
 }

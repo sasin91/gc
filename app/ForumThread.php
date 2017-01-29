@@ -3,12 +3,9 @@
 namespace App;
 
 use App\Events\Forum\{
-    ForumThreadBecamePopular,
-    ForumThreadBecameUnpopular,
-    ForumThreadLocked,
-    ForumThreadUnlocked,
-    ForumThreadPinned,
-    ForumThreadUnpinned
+    ForumThreadCreated,
+    ForumThreadUpdated,
+    ForumThreadDeleted
 };
 
 use Illuminate\Database\Eloquent\Model;
@@ -31,43 +28,20 @@ class ForumThread extends Model
         'popular'   =>  'boolean'
     ];
 
-    protected $with = ['author'];
-
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::updated(function ($thread) {
-            if ($thread->isDirty('popular')) {
-                $event = $thread->popular
-                ? ForumThreadBecamePopular::class
-                : ForumThreadBecameUnpopular::class;
-
-                broadcast(new $event($thread));
-            }
-
-            if ($thread->isDirty('locked')) {
-                $event = $thread->locked
-                ? ForumThreadLocked::class
-                : ForumThreadUnlocked::class;
-
-                broadcast(new $event($thread));
-            }
-
-            if ($thread->isDirty('pinned')) {
-                $event = $thread->pinned
-                ? ForumThreadPinned::class
-                : ForumThreadUnpinned::class;
-
-                broadcast(new $event($thread));
-            }            
-        });
-    }
+    * The event map for the model.
+    *
+    * Allows for object-based events for native Eloquent events.
+    *
+    * @var array
+    */
+    protected $events = [
+        'created'   =>  ForumThreadCreated::class,
+        'updated'   =>  ForumThreadUpdated::class,
+        'deleting'  =>  ForumThreadDeleted::class
+    ];
+    
+    protected $with = ['author'];
 
     public function scopeLocked($query) 
     {

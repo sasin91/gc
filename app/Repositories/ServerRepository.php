@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Events\{
+use App\Events\Server\{
     PlayerJoined,
     PlayerJoining,
     PlayerLeft,

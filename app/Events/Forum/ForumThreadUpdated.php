@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ForumThreadBecamePopular implements ShouldBroadcast
+class ForumThreadUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +35,6 @@ class ForumThreadBecamePopular implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('forum-'.$this->thread->forum->id);
+        return new Channel('forum');
     }
 }

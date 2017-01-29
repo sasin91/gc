@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events\Forum;
+namespace App\Events\ChatRoom;
 
-use App\ForumThread;
+use App\ChatRoom;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,21 +11,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ForumThreadLocked implements ShouldBroadcast
+class ChatRoomCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $thread;
+    public $room;
 
     /**
      * Create a new event instance.
      *
-     * @param ForumThread $thread 
      * @return void
      */
-    public function __construct(ForumThread $thread)
+    public function __construct(ChatRoom $room)
     {
-        $this->thread = $thread;
+        $this->room = $room;
     }
 
     /**
@@ -35,6 +34,10 @@ class ForumThreadLocked implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('forum-'.$this->thread->forum->id);
+        if ($this->room->isPrivate()) {
+            return new PrivateChannel('team-chat-rooms-'.$this->room->team->id);
+        }
+
+        return new Channel('chat-rooms');
     }
 }

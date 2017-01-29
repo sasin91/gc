@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\Server\{ServerCreated, ServerUpdated, ServerDeleted};
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,20 @@ class Server extends Model
 		'player_limit'	=>	'integer',
 		'players'		=>	'integer'
 	];
+
+	/**
+	* The event map for the model.
+	*
+	* Allows for object-based events for native Eloquent events.
+	*
+	* @var array
+	*/
+	protected $events = [
+	    'created' => ServerCreated::class,
+	    'updated' => ServerUpdated::class,
+	    'deleting'=> ServerDeleted::class
+	];
+	
 
 	/**
      * The "booting" method of the model.

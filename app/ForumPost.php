@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Events\Forum\NewForumPost;
+use App\Events\Forum\ForumPostCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumPost extends Model
@@ -23,7 +23,9 @@ class ForumPost extends Model
      * @var array
      */
     protected $events = [
-        'saved' =>  NewForumPost::class
+        'created'   =>  ForumPostCreated::class,
+        'updated'   =>  ForumPostUpdated::class,
+        'deleting'  =>  ForumPostDeleted::class  
     ];
 
 
