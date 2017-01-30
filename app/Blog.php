@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\Blog\{BlogCreated, BlogUpdated, BlogDeleted};
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
@@ -9,6 +10,20 @@ class Blog extends Model
     protected $fillable = [
     	'name', 'description'
     ];
+
+    /**
+    * The event map for the model.
+    *
+    * Allows for object-based events for native Eloquent events.
+    *
+    * @var array
+    */
+    protected $events = [
+        'created'   =>  BlogCreated::class,
+        'updated'   =>  BlogUpdated::class,
+        'deleting'  =>  BlogDeleted::class
+    ];
+    
 
     public function posts() 
     {

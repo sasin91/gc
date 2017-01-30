@@ -2,7 +2,6 @@
 
 namespace App\Events\Forum;
 
-use App\ForumPost;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,17 +14,17 @@ class ForumPostCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $post;
+    public $forumPost;
 
     /**
      * Create a new event instance.
      *
-     * @param ForumPost $post 
+     * @param ForumPost $forumPost 
      * @return void
      */
-    public function __construct(ForumPost $post)
+    public function __construct(\App\ForumPost $forumPost)
     {
-        $this->post = $post;
+        $this->forumPost = $forumPost;
     }
 
     /**
@@ -35,6 +34,6 @@ class ForumPostCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('forum');
+        return new Channel('forum.forum-thread-'.$this->forumPost->thread->id);
     }
 }

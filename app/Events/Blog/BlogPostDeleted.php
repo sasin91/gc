@@ -10,18 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class BlogPostDeleted
+class BlogPostDeleted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $blogPost;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(App\BlogPost $blogPost)
     {
-        //
+        $this->blogPost = $blogPost;
     }
 
     /**
@@ -31,6 +33,6 @@ class BlogPostDeleted
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('blog-'.$this->blogPost->blog->id);
     }
 }

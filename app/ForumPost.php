@@ -31,7 +31,7 @@ class ForumPost extends Model
 
     public function thread() 
     {
-    	return $this->belongsTo(ForumThread::class);
+    	return $this->belongsTo(ForumThread::class, 'forum_thread_id');
     }
 
     public function author() 

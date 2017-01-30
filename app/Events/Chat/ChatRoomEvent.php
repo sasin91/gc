@@ -35,9 +35,9 @@ abstract class ChatRoomEvent implements ShouldBroadcast
     public function broadcastOn()
     {
         if ($this->room->isPrivate()) {
-            return new PrivateChannel('chat-room-'.$this->room->id);
+            return new PrivateChannel('chat-rooms');
         }
 
-        return new Channel('chat-room-'.$this->room->id);
+        return new Channel('chat-rooms');
     }
 }

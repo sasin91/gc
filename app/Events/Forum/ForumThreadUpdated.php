@@ -2,7 +2,6 @@
 
 namespace App\Events\Forum;
 
-use App\ForumThread;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -23,7 +22,7 @@ class ForumThreadUpdated implements ShouldBroadcast
      * @param ForumThread $thread 
      * @return void
      */
-    public function __construct(ForumThread $thread)
+    public function __construct(\App\ForumThread $thread)
     {
         $this->thread = $thread;
     }
@@ -35,6 +34,6 @@ class ForumThreadUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('forum');
+        return new Channel('forum-'.$this->thread->forum->id);
     }
 }

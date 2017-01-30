@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\Forum\{ForumCreated, ForumUpdated, ForumDeleted};
 use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
@@ -11,6 +12,20 @@ class Forum extends Model
 	protected $fillable = [
 		'title', 'icon'
 	];
+
+	/**
+	* The event map for the model.
+	*
+	* Allows for object-based events for native Eloquent events.
+	*
+	* @var array
+	*/
+	protected $events = [
+	    'created'	=>	ForumCreated::class,
+	    'updated'	=>	ForumUpdated::class,
+	    'deleting'	=>	ForumDeleted::class
+	];
+	
 
 	public function scopeForTeam($query, $team) 
 	{

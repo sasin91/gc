@@ -4,6 +4,7 @@ namespace App;
 
 use App\Tag;
 use App\Taggable;
+use App\Events\News\{NewsArticleCreated, NewsArticleUpdated, NewsArticleDeleted};
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use Watson\Rememberable\Rememberable;
@@ -15,6 +16,20 @@ class NewsArticle extends Model
     protected $fillable = [
         'title','description','body'
     ];
+
+    /**
+    * The event map for the model.
+    *
+    * Allows for object-based events for native Eloquent events.
+    *
+    * @var array
+    */
+    protected $events = [
+        'created'   =>  NewsArticleCreated::class,
+        'updated'   =>  NewsArticleUpdated::class,
+        'deleting'  =>  NewsArticleDeleted::class
+    ];
+    
 
     public function news()
     {
