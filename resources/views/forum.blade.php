@@ -8,14 +8,15 @@
             <div class="col-md-4">
                 <div class="panel panel-default panel-flush">
                     <div class="panel-heading">
-                        Forum
+                        Forums
                     </div>
 
                     <div class="panel-body">
                         <div class="forum-tabs">
                             <ul class="nav forum-stacked-tabs" role="tablist">
                                 <li role="presentation" v-for="forum in forums">
-                                    <a :href="forumLink(forum)" 
+                                    <a @click="selectForum(forum)"
+                                       :href="forumLink(forum)"
                                        :aria-controls="forum.title"
                                        role="tab"
                                        data-toggle="tab"

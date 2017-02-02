@@ -7,7 +7,7 @@ module.exports = {
 
 	methods: {
 		getLatestThreads() {
-			this.$http.get('/api/forum/threads/latest')
+			this.$http.get('/api/forums/threads/latest')
 				.then(response => {
 					this.latestThreads = response.data;
 				});

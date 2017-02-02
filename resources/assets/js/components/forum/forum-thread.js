@@ -11,7 +11,7 @@ Vue.component('forum-thread', {
 
 	methods: {
 		reply() {
-			this.$http.post("/api/forum/"+this.forum.id+"/threads/"+this.thread.id+"/posts", this.reply)
+			this.$http.post("/api/forums/"+this.forum.id+"/threads/"+this.thread.id+"/posts", this.reply)
 				 .then(response => {
 				 	Bus.$emit('NewForumPost');
 				 })

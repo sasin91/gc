@@ -17,9 +17,10 @@
         "laravel/dusk": "^1.0@dev",
         "laravel/framework": "5.4.*",
         "laravel/scout": "^2.0",
-        "laravel/spark": "*@dev",
+        "laravel/spark": "4.0.*",
         "laravel/tinker": "^1.0@dev",
         "phpunit/phpunit": "^5.7",
+        "pusher/pusher-php-server": "^2.6",
         "sasin91/laravel-repository": "dev-master",
         "watson/rememberable": "^2.0"
     },

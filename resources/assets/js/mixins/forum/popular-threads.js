@@ -7,7 +7,7 @@ module.exports = {
 
 	methods: {
 		getPopularThreads() {
-			this.$http.get('/api/forum/threads/popular')
+			this.$http.get('/api/forums/threads/popular')
 				.then(response => {
 					this.popularThreads = response.data;
 				});

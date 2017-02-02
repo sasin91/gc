@@ -18,6 +18,28 @@ require('spark-bootstrap');
 
 require('./components/bootstrap');
 
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '2618ef73c0eec803e617'
+});
+
+/**
+ * Inorder to be use Axios as the $http call, like vue-resource,
+ * we'll need to bind it as a prototype on our Vue instance..
+ */
+Vue.prototype.$http = window.axios;
+
+/**
+ * Lastly, lets create the Vue app and require in the Spark mixin.
+ */
 var app = new Vue({
     mixins: [require('spark')]
 });

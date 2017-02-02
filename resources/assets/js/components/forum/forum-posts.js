@@ -21,7 +21,7 @@ Vue.component('forum-posts', {
 
 	methods: {
 		getPosts() {
-			this.$http.get("/api/forum/"+this.forum.id+"/threads/"+this.thread.id+"/posts")
+			this.$http.get("/api/forums/"+this.forum.id+"/threads/"+this.thread.id+"/posts")
 				.then(response => {
 					this.posts = response.data;
 				});

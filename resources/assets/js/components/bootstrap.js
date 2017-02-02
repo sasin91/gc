@@ -18,7 +18,7 @@ require('./news/latest-news-list');
 require('./news/news-articles-list');
 require('./news/show-news-article');
 
-require('./forum');
-require('./forum/selected-forum');
+require('./forum/forum-board');
+require('./forum/forum');
 require('./forum/forum-thread');
 require('./forum/forum-posts');
