@@ -206,3 +206,24 @@ $factory->define(App\ForumPost::class, function ($faker) {
         'content'   =>  $faker->paragraph
     ];
 });
+
+$factory->define(App\Blog::class, function ($faker) {
+    return [
+        'author_id'     => function () {
+            return factory(App\User::class)->create()->id;
+        },
+        'name'          =>  $faker->bs,
+        'description'   =>  $faker->text
+    ];
+});
+
+$factory->define(App\BlogPost::class, function ($faker) {
+    return [
+        'blog_id'       => function () {
+            return factory(App\Blog::class)->create()->id;
+        },
+        'title'     =>  $faker->title,
+        'summary'   =>  $faker->bs,
+        'body'      =>  $faker->text
+    ];
+});

@@ -21,7 +21,7 @@ class BlogCreated implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(App\Blog $blog)
+    public function __construct(\App\Blog $blog)
     {
         $this->blog = $blog;
     }

@@ -18,6 +18,10 @@ Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
 
+Route::get('blog', function() {
+    return view('blog');
+});
+
 Route::group(['prefix' => 'news'], function() {
     Route::get('/', function () {
     	return view('news.news-list');
@@ -37,7 +41,7 @@ Route::group(['prefix' => 'news'], function() {
 
 Route::group(['prefix' => 'forum'], function() {
     Route::get('/', function () {
-        return view('forum');
+        return view('forum-board');
     });
 
     Route::get('{forum}/threads', function() {

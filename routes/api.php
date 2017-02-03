@@ -34,23 +34,23 @@ Route::group(['middleware' => 'auth:api'], function (Router $route) {
     });
 });
 
-Route::resource('forum', 'ForumController', ['except' => ['create', 'edit']]);
-Route::group(['as' => 'forum.'], function() {
-    Route::group(['prefix' => 'forum/threads', 'as' => 'threads.'], function() {
+Route::resource('forums', 'ForumController', ['except' => ['create', 'edit']]);
+Route::group(['as' => 'forums.'], function() {
+    Route::group(['prefix' => 'forums/threads', 'as' => 'threads.'], function() {
         Route::get('/', 'ForumThreadController@index')->name('index');
         Route::get('mine', 'ForumThreadController@mine')->name('mine');
         Route::get('latest', 'ForumThreadController@latest')->name('latest');
         Route::get('popular', 'ForumThreadController@popular')->name('popular');
     });
 
-    Route::group(['prefix' => 'forum/posts', 'as' => 'posts.'], function() {
+    Route::group(['prefix' => 'forums/posts', 'as' => 'posts.'], function() {
         Route::get('/', 'ForumPostController@index')->name('index');
         Route::get('mine', 'ForumPostController@mine')->name('mine');
     });
 });
 
-Route::resource('forum.threads', 'Forum\ForumThreadsController', ['except' => ['create', 'edit']]);
-Route::resource('forum.threads.posts', 'Forum\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
+Route::resource('forums.threads', 'Forum\ForumThreadsController', ['except' => ['create', 'edit']]);
+Route::resource('forums.threads.posts', 'Forum\ForumThread\ForumPostsController', ['except' => ['create', 'edit']]);
 
 Route::post('servers/join/{server}', 'ServersController@join');
 Route::post('servers/leave/{server}', 'ServersController@leave');
@@ -62,3 +62,6 @@ Route::resource('news', 'NewsController');
 
 Route::get('news/articles/search/{query}', 'News\NewsArticlesController@search');
 Route::resource('news.articles', 'News\NewsArticlesController');
+
+Route::resource('blogs', 'BlogController', ['except' => ['create', 'edit']]);
+Route::resource('blogs.posts', 'Blog\BlogPostController', ['except' => ['create', 'edit']]);

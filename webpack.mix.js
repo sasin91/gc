@@ -27,5 +27,6 @@ mix
                 'vue$': 'vue/dist/vue.js'
             }
         }
-    });
+    })
+    .version();
 

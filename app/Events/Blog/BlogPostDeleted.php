@@ -21,7 +21,7 @@ class BlogPostDeleted implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(App\BlogPost $blogPost)
+    public function __construct(\App\BlogPost $blogPost)
     {
         $this->blogPost = $blogPost;
     }

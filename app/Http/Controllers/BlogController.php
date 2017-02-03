@@ -22,7 +22,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return Blog::all();
+        return Blog::with(['photos', 'author', 'tags'])->paginate(10);
     }
 
     /**

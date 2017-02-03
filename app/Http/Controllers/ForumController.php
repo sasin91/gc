@@ -24,8 +24,8 @@ class ForumController extends Controller
     public function index()
     {
         return request()->user()
-        ? Forum::withTeam(request()->user()->currentTeam())->get()
-        : Forum::all();
+        ? Forum::withTeam(request()->user()->currentTeam())->paginate(10)
+        : Forum::paginate(10);
     }
 
     /**

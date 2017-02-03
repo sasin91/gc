@@ -1,48 +1,40 @@
-@extends('spark::layouts.app')
-
-@section('content')
-<forum :user="user" :teams="teams" inline-template>
-    <div class="spark-screen container">
-        <div class="row">
-            <!-- Tabs -->
-            <div class="col-md-4">
-                <div class="panel panel-default panel-flush">
-                    <div class="panel-heading">
-                        Forums
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="forum-tabs">
-                            <ul class="nav forum-stacked-tabs" role="tablist">
-                                <li role="presentation" v-for="forum in forums">
-                                    <a @click="selectForum(forum)"
-                                       :href="forumLink(forum)"
-                                       :aria-controls="forum.title"
-                                       role="tab"
-                                       data-toggle="tab"
-                                    >
-                                        <i :class="forum.icon"></i>
-                                        @{{ forum.title }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <!-- Tab Panels -->
-                <div class="col-md-8">
-                    <div class="tab-content">
-                        <div role="tabpanel" 
-                             class="tab-pane"
-                             :id="forum.slug"
-                             v-for="forum in forums"
-                        >
-                            @include('forum.selected-forum')
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</forum>
-@endsection
+	<forum :forum="selectedForum" :threads="selectedForumThreads" inline-template>
+		<div class="panel panel-default panel-flush">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				@{{ forum.title }}
+			</div>
+			<div class="panel-body">
+				<!-- Table -->
+				<div v-show="threads.length === 0" class="alert alert-info">
+					No threads found.
+				</div>
+				<table v-show="threads.length > 0" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Author</th>
+							<th>Title</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+						 	v-for="thread in threads"
+							@click="redirectToThread(thread)"
+							class="clickable"
+						>
+							<td>
+								@{{ thread.author.name }}
+							</td>
+							<td>
+								@{{ thread.title }}
+							</td>
+							<td>
+								@{{ thread.description }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>	
+		</div>
+	</forum>

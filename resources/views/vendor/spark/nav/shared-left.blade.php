@@ -5,3 +5,6 @@
 <li>
 	<a href="/news">News</a>
 </li>
+<li>
+	<a href="/blog">Blog</a>
+</li>
