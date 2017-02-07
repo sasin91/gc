@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
+    //use Sluggable;
+
     protected $fillable = [
     	'name', 'description'
     ];
@@ -24,6 +26,10 @@ class Blog extends Model
         'deleting'  =>  BlogDeleted::class
     ];
     
+    public function sluggable()
+    {
+        return 'name';
+    }
 
     public function posts() 
     {

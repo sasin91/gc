@@ -18,8 +18,18 @@ Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
 
-Route::get('blog', function() {
-    return view('blog');
+Route::get('blogs', function() {
+    return view('blog.blog-list');
+});
+
+Route::get('blogs/{blog}', function(App\Blog $blog) {
+    return view('blog.blog', ['blog' => $blog->load([
+                                                'posts',
+                                                'author', 
+                                                'tags', 
+                                                'photos'
+                                        ])
+    ]);
 });
 
 Route::group(['prefix' => 'news'], function() {
@@ -41,14 +51,10 @@ Route::group(['prefix' => 'news'], function() {
 
 Route::group(['prefix' => 'forum'], function() {
     Route::get('/', function () {
-        return view('forum-board');
+        return view('forum.forum-board');
     });
 
-    Route::get('{forum}/threads', function() {
-        //
-    });
-
-    Route::get('{forum}/threads/{thread}', function($forum, $thread) {
+   Route::get('{forum}/threads/{thread}', function($forum, $thread) {
         return view('forum.forum-thread', [
             'thread'   => ForumThread::whereSlug($thread)->firstOrFail(), 
             'forum'    => Forum::whereSlug($forum)->firstOrFail()

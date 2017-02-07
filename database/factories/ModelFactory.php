@@ -51,7 +51,7 @@ $factory->define(App\News::class, function ($faker) {
 $factory->define(App\Photo::class, function ($faker) {
 	return [	
 		'description'	=>	$faker->sentence,	
-		'path'			=>	$faker->imageUrl(),
+		'path'			=>	$faker->image(storage_path('app/public/photos')),
 	];
 });
 

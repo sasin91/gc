@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transformers\BlogTransformer;
 use App\Blog;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
@@ -44,7 +45,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return $blog->load(['posts', 'author', 'photos', 'tags']);
+        return BlogTransformer::transform($blog->load(['posts', 'author', 'photos', 'tags']));
     }
 
     /**

@@ -23,4 +23,5 @@ require('./forum/forum');
 require('./forum/forum-thread');
 require('./forum/forum-posts');
 
-require('./blog-list');
+require('./blog/blog-list');
+require('./blog/blog');

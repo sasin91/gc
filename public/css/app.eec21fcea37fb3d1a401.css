@@ -9271,6 +9271,12 @@ a.list-group-item-danger.active:focus {
   color: #fff;
 }
 
+.vertically-centered {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
 .bordered {
   border-radius: 1px;
   border-color: #151515;

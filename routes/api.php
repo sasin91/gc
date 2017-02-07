@@ -65,3 +65,6 @@ Route::resource('news.articles', 'News\NewsArticlesController');
 
 Route::resource('blogs', 'BlogController', ['except' => ['create', 'edit']]);
 Route::resource('blogs.posts', 'Blog\BlogPostController', ['except' => ['create', 'edit']]);
+
+Route::get('photos/{ids}/bulk', 'PhotosController@bulk');
+Route::resource('photos', 'PhotosController');

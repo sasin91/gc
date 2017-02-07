@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration
                   ->on('users')
                   ->onDelete('cascade');
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('description');
             $table->timestamps();
         });
