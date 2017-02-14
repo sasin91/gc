@@ -18,6 +18,12 @@ Route::get('/', 'WelcomeController@show');
 
 Route::get('/home', 'HomeController@show');
 
+Route::group(['prefix' => 'users'], function() {
+    Route::get('users/{user}', function(App\User $user) {
+        return view('users.profile', ['user' => $user]);
+    });
+});
+
 Route::get('blogs', function() {
     return view('blog.blog-list');
 });

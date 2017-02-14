@@ -16,6 +16,9 @@ use Illuminate\Routing\Router;
 Route::group(['middleware' => 'auth:api'], function (Router $route) {
     $route->get('users/search/{nameOrEmail}', 'UsersController@search');
     $route->get('users/online', 'UsersController@onlineList');
+    $route->get('users/{user}', 'UsersController@show');
+    $route->get('users/{user?}/friends', 'UsersController@friendsList');
+    $route->get('users/{user?}/messages', 'UsersController@messages');
 
     $route->group(['prefix' => 'friends'], function (Router $route) {
         $route->get('mutual/{user}', 'FriendsController@mutual');

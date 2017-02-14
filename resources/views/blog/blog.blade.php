@@ -9,7 +9,7 @@
 							<h1>
 		                		@{{ blog.name }}
 			                </h1>
-			                <p>
+			                <p @click="visitAuthor(blog.author)" class="clickable">
 			                	<em>Written by: @{{ blog.author.name }}</em>
 			                </p>
 			                <span v-for="tag in blog.tags" class="badge">

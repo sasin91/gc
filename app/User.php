@@ -65,6 +65,11 @@ class User extends SparkUser
         'online' => 'boolean'
     ];
 
+    public function isDev()
+    {
+        return Spark::developer($this->email);
+    }
+
     /**
      * Return only online Users.
      *

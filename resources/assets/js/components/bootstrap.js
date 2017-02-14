@@ -12,6 +12,7 @@
 require('./../spark-components/bootstrap');
 
 require('./home');
+require('./users/user-profile');
 
 require('./news/news-list');
 require('./news/latest-news-list');

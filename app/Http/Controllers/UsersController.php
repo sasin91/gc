@@ -11,14 +11,14 @@ use Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper;
  */
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('dev')->only(['friendsList', 'notifications', 'messages']);
-    }
-
     public function onlineList()
     {
         return User::OnlyOnline();
+    }
+
+    public function show(User $user)
+    {
+        return $user->load(['servers', 'blogs', 'friends']);
     }
 
     public function search(string $nameOrEmail)
@@ -26,18 +26,26 @@ class UsersController extends Controller
         return User::search($nameOrEmail)->get();
     }
 
-    public function friendsList(User $user)
+    public function friendsList(User $user = null)
     {
-        return $user->getFriends();
+        if ($user && $user->id !== request()->user()->id) {
+            abort_unless(request()->user()->isDev(), 401);
+
+            return $user->getFriends();
+        }
+
+        return request()->user()->getFriends();
     }
 
-    public function notifications(User $user)
+    public function messages(User $user = null)
     {
-        return $user->notifications();
-    }
+        if ($user && $user->id !== request()->user()->id) {
+            abort_unless(request()->user()->isDev(), 401);
 
-    public function messages(User $user)
-    {
-        return $user->messages;
+            return $user->messages;
+        }
+
+
+        return request()->user()->messages;
     }
 }

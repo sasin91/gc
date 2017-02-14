@@ -6,5 +6,5 @@
 	<a href="/news">News</a>
 </li>
 <li>
-	<a href="/blog">Blog</a>
+	<a href="/blogs">Blog</a>
 </li>
