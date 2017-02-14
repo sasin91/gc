@@ -11,13 +11,30 @@
 									<img class="spark-nav-profile-photo m-r-xs" 
 										 :src="user.photo_url"
 									>
+									@{{ user.name }}
 								</h3>
 							</div>
 							<div class="panel-body">
-								<h1>name: @{ user.name }}</h1>
-								<h3>email: @{{ user.email }}</h3>
+								<h3><i class="fa fa-envelope"></i> @{{ user.email }}</h3>
 
-								<p>A member since: @{{ user.created_at | date }}</p>
+								<p><i class="fa fa-birthday-cake"></i> @{{ user.created_at | date }}</p>
+
+								<div class="well">
+									<p  v-if="user.servers.length > 0">
+										<i class="fa fa-server"></i>
+										Plays on: <a v-for="server in user.servers"
+													 :href="serverLink(server)">
+													 	@{{ server.name }}
+													 </a>
+									</p>
+									<p v-if="user.blogs.length > 0">				 
+										<i class="fa fa-paperclip"></i>
+										Blogs at: <a v-for="blog in user.blogs"
+													 :href="blogLink(blog)">
+													 	@{{ blog.name }}
+													 </a>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>

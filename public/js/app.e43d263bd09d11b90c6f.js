@@ -28929,7 +28929,16 @@ Vue.component('show-news-article', {
 /***/ (function(module, exports) {
 
 Vue.component('user-profile', {
-	props: ['user']
+	props: ['user'],
+
+	methods: {
+		serverLink: function serverLink(server) {
+			return '/servers/' + server.id;
+		},
+		blogLink: function blogLink(blog) {
+			return '/blogs/' + blog.slug;
+		}
+	}
 });
 
 /***/ }),
